@@ -16,7 +16,7 @@ public class NetworkClientService {
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
             httpClient.addInterceptor(chain -> {
-                Request request = chain.request().newBuilder().addHeader("token", Variables.secretKey).build();
+                Request request = chain.request().newBuilder().addHeader("token", Variables.accessToken).build();
                 return chain.proceed(request);
             });
 

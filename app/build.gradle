@@ -41,4 +41,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
+    implementation 'com.wang.avi:library:2.1.3'
 }
