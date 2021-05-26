@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">نشریاب</string>
     <string name="app_description">مرجع نشریات انجمن‌های دانشجویی دانشگاه‌های کشور</string>
+    <string name="profile">پروفایل</string>
+    <string name="search">جست‌و‌جو</string>
+    <string name="category">دسته‌بندی</string>
+    <string name="home">خانه</string>
 </resources>

@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".views.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mainActivityViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/mainActivityNavigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/mainActivityNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:0.16"
+        app:backgroundColor="@color/lightBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_menu"
+        app:itemFontFamily="@font/shabnam"
+        app:textSize="14sp"
+        app:iconSize="16sp"
+        app:indicatorRadius="7dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
