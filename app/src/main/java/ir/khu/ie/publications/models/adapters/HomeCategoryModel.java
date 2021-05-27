@@ -2,14 +2,12 @@ package ir.khu.ie.publications.models.adapters;
 
 import java.util.ArrayList;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 public class HomeCategoryModel {
     private String CategoryId;
     private String CategoryName;
     private ArrayList<HomeCardsModel> CardsList;
 
-    public HomeCategoryModel(String id,String name, ArrayList<HomeCardsModel> cardsList){
+    public HomeCategoryModel(String id, String name, ArrayList<HomeCardsModel> cardsList) {
         CategoryId = id;
         CategoryName = name;
         CardsList = cardsList;

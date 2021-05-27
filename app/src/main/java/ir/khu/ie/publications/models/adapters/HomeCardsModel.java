@@ -5,7 +5,7 @@ public class HomeCardsModel {
     private String publicationName;
     private String publicationDescription;
 
-    public HomeCardsModel(String url,String name,String description){
+    public HomeCardsModel(String url, String name, String description) {
         imageUrl = url;
         publicationName = name;
         publicationDescription = description;

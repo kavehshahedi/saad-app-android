@@ -3,8 +3,9 @@ package ir.khu.ie.publications.views;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import java.util.ArrayList;
 
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.ViewPagerAdapter;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeViewPage() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
-        //adapter.addFragment(new ProfileFragment(MainActivity.this, remainTime, accountType));
+        //adapter.addFragment(new HomeFragment(MainActivity.this, new ArrayList<>()), getResources().getString(R.string.home));
 
         ViewPager viewPager = findViewById(R.id.mainActivityViewPager);
         viewPager.setAdapter(adapter);

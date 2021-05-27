@@ -9,4 +9,6 @@
     <string name="retry">تلاش مجدد</string>
     <string name="exit">خروج</string>
     <string name="error_occurred_try_again">خطایی رخ داد. مجددا تلاش کنید.</string>
+    <string name="publications">نشریات</string>
+    <string name="plus_more">+ بیشتر</string>
 </resources>

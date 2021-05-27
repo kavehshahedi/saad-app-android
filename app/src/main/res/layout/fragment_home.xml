@@ -5,34 +5,35 @@
     android:id="@+id/Home_ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.HomeFragment"
-
-    android:background="@color/cardview_dark_background">
+    android:background="@android:color/transparent"
+    tools:context=".views.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Home_ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/Home_ConstraintLayout">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Home_TitleText"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragmentHomeTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="نشریات"
-            android:textColor="@color/white"
-            android:textDirection="rtl"
-            android:textSize="20dp"
-            android:textStyle="bold"
-
             android:layout_marginTop="20dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/shabnam"
+            android:text="@string/publications"
+            android:textColor="@color/black"
+            android:textDirection="rtl"
+            android:textSize="16sp"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ss.com.bannerslider.Slider
-            android:id="@+id/Home_Slider"
+            android:id="@+id/fragmentHomeSlider"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
@@ -41,13 +42,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Home_TitleText"
-            app:layout_constraintVertical_bias="0.0">
-
-        </ss.com.bannerslider.Slider>
+            app:layout_constraintTop_toBottomOf="@+id/fragmentHomeTitleText"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Home_CategoryRecyclerView"
+            android:id="@+id/fragmentHomeRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -55,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toBottomOf="@+id/Home_Slider"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentHomeSlider"
             app:layout_constraintVertical_bias="1.0">
 
         </androidx.recyclerview.widget.RecyclerView>
