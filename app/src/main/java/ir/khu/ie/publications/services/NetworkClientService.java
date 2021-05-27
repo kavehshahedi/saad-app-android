@@ -1,5 +1,6 @@
 package ir.khu.ie.publications.services;
 
+import ir.khu.ie.publications.BuildConfig;
 import ir.khu.ie.publications.utils.Variables;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -8,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkClientService {
 
-    private static final String BASE_URL = "";
+    private static final String BASE_URL = BuildConfig.DEBUG ? "http://10.0.2.2:3000/api/v1/" : "";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitClient() {
@@ -16,7 +17,11 @@ public class NetworkClientService {
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
             httpClient.addInterceptor(chain -> {
-                Request request = chain.request().newBuilder().addHeader("token", Variables.accessToken).build();
+                Request request = chain
+                        .request()
+                        .newBuilder()
+                        .addHeader("token", Variables.accountData == null ? "" : Variables.accountData.getJwt())
+                        .build();
                 return chain.proceed(request);
             });
 
