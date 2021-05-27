@@ -2,20 +2,28 @@ package ir.khu.ie.publications.views;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ir.khu.ie.publications.R;
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.adapters.HomeCategoryRecyclerAdapter;
+import ir.khu.ie.publications.models.adapters.HomeCategoryModel;
+
 public class HomeFragment extends Fragment {
+
+    private View view;
+    private RecyclerView HomeCategoryRecyclerView;
+    private HomeCategoryRecyclerAdapter HomeCategoryRecyclerAdapter;
+    private ConstraintLayout home;
+    private ArrayList<HomeCategoryModel> CategoriesList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,11 +63,22 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        CategoriesList = new ArrayList<>();
+        //inja por mishe
+        //CategoriesList.add(new HomeCategory_model("دسته اول",RecyclerView))
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view =inflater.inflate(R.layout.fragment_home,container,false);
+
+        HomeCategoryRecyclerView = (RecyclerView) view.findViewById(R.id.Home_CategoryRecyclerView);
+        HomeCategoryRecyclerAdapter = new HomeCategoryRecyclerAdapter(CategoriesList);
+        HomeCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        HomeCategoryRecyclerView.setAdapter(HomeCategoryRecyclerAdapter);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
