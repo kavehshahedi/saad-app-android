@@ -11,7 +11,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.models.adapters.HomeCardsModel;
 
@@ -38,7 +42,7 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
 
         holder.publicationName.setText(currentItem.getPublicationName());
         holder.description.setText(currentItem.getPublicationDescription());
-        //holder.CardsRecycler.setrecy(currentItem.getCardsRecyclerView());
+        Picasso.get().load(currentItem.getImageUrl()).into(holder.cardImage);
     }
 
     @Override
@@ -49,15 +53,15 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView cardImage;
-        public TextView publicationName;
-        public TextView description;
+        public AppCompatTextView publicationName;
+        public AppCompatTextView description;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            cardImage = itemView.findViewById(R.id.itemHomeCardImage);
-            publicationName = itemView.findViewById(R.id.itemHomeCardPublicationName);
-            description = itemView.findViewById(R.id.itemHomeCardDescription);
+            cardImage = itemView.findViewById(R.id.itemHomeCategoryCardImage);
+            publicationName = itemView.findViewById(R.id.itemHomeCategoryCardPublicationName);
+            description = itemView.findViewById(R.id.itemHomeCategoryCardDescription);
         }
     }
 }

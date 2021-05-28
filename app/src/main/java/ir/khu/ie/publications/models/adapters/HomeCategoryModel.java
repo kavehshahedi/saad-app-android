@@ -3,37 +3,37 @@ package ir.khu.ie.publications.models.adapters;
 import java.util.ArrayList;
 
 public class HomeCategoryModel {
-    private String CategoryId;
-    private String CategoryName;
-    private ArrayList<HomeCardsModel> CardsList;
+    private String categoryId;
+    private String categoryName;
+    private ArrayList<HomeCardsModel> cardsList;
 
     public HomeCategoryModel(String id, String name, ArrayList<HomeCardsModel> cardsList) {
-        CategoryId = id;
-        CategoryName = name;
-        CardsList = cardsList;
+        categoryId = id;
+        categoryName = name;
+        this.cardsList = cardsList;
     }
 
     public String getCategoryId() {
-        return CategoryId;
+        return categoryId;
     }
 
     public void setCategoryId(String categoryId) {
-        CategoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
-        return CategoryName;
+        return categoryName;
     }
 
     public void setCategoryName(String categoryName) {
-        CategoryName = categoryName;
+        this.categoryName = categoryName;
     }
 
     public ArrayList<HomeCardsModel> getCardsList() {
-        return CardsList;
+        return cardsList;
     }
 
     public void setCardsList(ArrayList<HomeCardsModel> cardsList) {
-        CardsList = cardsList;
+        this.cardsList = cardsList;
     }
 }

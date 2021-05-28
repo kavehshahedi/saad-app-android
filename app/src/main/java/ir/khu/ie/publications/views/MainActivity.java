@@ -5,8 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import java.util.ArrayList;
-
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.ViewPagerAdapter;
 import me.ibrahimsn.lib.SmoothBottomBar;

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
         HomeCategoryModel currentItem = categoriesData.get(position);
 
         holder.categoryName.setText(currentItem.getCategoryName());
-        //holder.CardsRecycler.setrecy(currentItem.getCardsRecyclerView());
+        holder.publicationsRecyclerView.setAdapter(new HomeCardRecyclerAdapter(context, currentItem.getCardsList()));
+        holder.publicationsRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
     }
 
     @Override
@@ -47,7 +50,7 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView categoryName;
+        public AppCompatTextView categoryName;
         public RecyclerView publicationsRecyclerView;
 
         public ViewHolder(@NonNull View itemView) {
