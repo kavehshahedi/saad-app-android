@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import ir.khu.ie.publications.models.responses.Response;
-import ir.khu.ie.publications.models.responses.ResponseData;
 
 public class GetAccountResponse extends Response {
 
@@ -21,7 +20,7 @@ public class GetAccountResponse extends Response {
         return data;
     }
 
-    public static class Data extends ResponseData {
+    public static class Data {
         @SerializedName("phone")
         @Expose
         private final String phone;

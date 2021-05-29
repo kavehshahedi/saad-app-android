@@ -6,4 +6,5 @@ public class Variables {
 
     public static GetAccountResponse.Data accountData;
 
+    public static final int mainPageRetrieveCount = 5;
 }

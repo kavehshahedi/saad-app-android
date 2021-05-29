@@ -1,14 +1,10 @@
 package ir.khu.ie.publications.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -16,16 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import ir.khu.ie.publications.R;
-import ir.khu.ie.publications.models.adapters.HomeCardsModel;
+import ir.khu.ie.publications.models.publications.Publication;
 
 public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecyclerAdapter.ViewHolder> {
     private final Context context;
-    private final ArrayList<HomeCardsModel> cardsData;
+    private final List<Publication> publications;
 
-    public HomeCardRecyclerAdapter(Context context, ArrayList<HomeCardsModel> cardsData) {
+    public HomeCardRecyclerAdapter(Context context, List<Publication> cardsData) {
         this.context = context;
-        this.cardsData = cardsData;
+        this.publications = cardsData;
     }
 
     @NonNull
@@ -38,16 +36,16 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
 
     @Override
     public void onBindViewHolder(@NonNull HomeCardRecyclerAdapter.ViewHolder holder, int position) {
-        HomeCardsModel currentItem = cardsData.get(position);
+        Publication currentItem = publications.get(position);
 
-        holder.publicationName.setText(currentItem.getPublicationName());
-        holder.description.setText(currentItem.getPublicationDescription());
+        holder.publicationName.setText(currentItem.getTitle());
+        holder.description.setText(currentItem.getDescription());
         Picasso.get().load(currentItem.getImageUrl()).into(holder.cardImage);
     }
 
     @Override
     public int getItemCount() {
-        return cardsData.size();
+        return publications.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

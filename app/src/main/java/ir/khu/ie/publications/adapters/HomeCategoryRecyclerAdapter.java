@@ -4,24 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ir.khu.ie.publications.R;
-import ir.khu.ie.publications.models.adapters.HomeCategoryModel;
+import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
 
 public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCategoryRecyclerAdapter.ViewHolder> {
 
     private final Context context;
-    private final ArrayList<HomeCategoryModel> categoriesData;
+    private final List<GetMainPageResponse.Data.Category> categoriesData;
 
-    public HomeCategoryRecyclerAdapter(Context context, ArrayList<HomeCategoryModel> categoriesData) {
+    public HomeCategoryRecyclerAdapter(Context context, List<GetMainPageResponse.Data.Category> categoriesData) {
         this.context = context;
         this.categoriesData = categoriesData;
     }
@@ -36,10 +35,10 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
 
     @Override
     public void onBindViewHolder(@NonNull HomeCategoryRecyclerAdapter.ViewHolder holder, int position) {
-        HomeCategoryModel currentItem = categoriesData.get(position);
+        GetMainPageResponse.Data.Category currentItem = categoriesData.get(position);
 
         holder.categoryName.setText(currentItem.getCategoryName());
-        holder.publicationsRecyclerView.setAdapter(new HomeCardRecyclerAdapter(context, currentItem.getCardsList()));
+        holder.publicationsRecyclerView.setAdapter(new HomeCardRecyclerAdapter(context, currentItem.getPublications()));
         holder.publicationsRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, true));
     }
 

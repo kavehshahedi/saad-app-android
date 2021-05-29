@@ -12,27 +12,28 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ir.khu.ie.publications.R;
-import ir.khu.ie.publications.adapters.HomeCardRecyclerAdapter;
 import ir.khu.ie.publications.adapters.HomeCategoryRecyclerAdapter;
-import ir.khu.ie.publications.models.adapters.HomeCardsModel;
-import ir.khu.ie.publications.models.adapters.HomeCategoryModel;
+import ir.khu.ie.publications.adapters.HomeSliderAdapter;
+import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
+import ss.com.bannerslider.Slider;
 
 public class HomeFragment extends Fragment {
 
     private Context context;
-    private ArrayList<HomeCategoryModel> categoriesData;
+    private List<GetMainPageResponse.Data.Slider> sliders;
+    private List<GetMainPageResponse.Data.Category> categoriesData;
     //private ArrayList<HomeCardsModel> cardsData;
 
     public HomeFragment() {
     }
 
-    public HomeFragment(Context context, ArrayList<HomeCategoryModel> categoriesData) {
+    public HomeFragment(Context context, List<GetMainPageResponse.Data.Slider> sliders, List<GetMainPageResponse.Data.Category> categoriesData) {
         this.context = context;
+        this.sliders = sliders;
         this.categoriesData = categoriesData;
-        //this.cardsData = cardsData;
     }
 
     @Override
@@ -49,16 +50,13 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //set arraylist to outer recyclerview
         RecyclerView homeCategoryRecyclerView = view.findViewById(R.id.fragmentHomeRecyclerView);
         HomeCategoryRecyclerAdapter homeCategoryRecyclerAdapter = new HomeCategoryRecyclerAdapter(context, categoriesData);
         homeCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         homeCategoryRecyclerView.setAdapter(homeCategoryRecyclerAdapter);
 
-        /*//set arraylist to inner recyclerview
-        RecyclerView homeCardRecyclerView = view.findViewById(R.id.itemHomeCategoryRecyclerInnerRecycler);
-        HomeCardRecyclerAdapter homeCardRecyclerAdapter = new HomeCardRecyclerAdapter(context, cardsData);
-        homeCardRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        homeCardRecyclerView.setAdapter(homeCardRecyclerAdapter);*/
+        Slider slider = view.findViewById(R.id.fragmentHomeSlider);
+        HomeSliderAdapter sliderAdapter = new HomeSliderAdapter(sliders);
+        slider.setAdapter(sliderAdapter);
     }
 }
