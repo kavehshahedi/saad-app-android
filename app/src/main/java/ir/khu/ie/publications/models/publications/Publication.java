@@ -144,6 +144,9 @@ public class Publication {
         @SerializedName("association_name")
         @Expose
         private final String associationName;
+        @SerializedName("university_name")
+        @Expose
+        private final String universityName;
         @SerializedName("ceo")
         @Expose
         private final String ceo;
@@ -154,8 +157,9 @@ public class Publication {
         @Expose
         private final String pageDesigner;
 
-        public Creators(String associationName, String ceo, String coverDesigner, String pageDesigner) {
+        public Creators(String associationName, String universityName, String ceo, String coverDesigner, String pageDesigner) {
             this.associationName = associationName;
+            this.universityName = universityName;
             this.ceo = ceo;
             this.coverDesigner = coverDesigner;
             this.pageDesigner = pageDesigner;
@@ -163,6 +167,10 @@ public class Publication {
 
         public String getAssociationName() {
             return associationName;
+        }
+
+        public String getUniversityName() {
+            return universityName;
         }
 
         public String getCeo() {

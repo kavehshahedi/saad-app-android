@@ -1,5 +1,6 @@
 package ir.khu.ie.publications.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,13 +35,17 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
         return new HomeCardRecyclerAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HomeCardRecyclerAdapter.ViewHolder holder, int position) {
         Publication currentItem = publications.get(position);
 
         holder.publicationName.setText(currentItem.getTitle());
-        holder.description.setText(currentItem.getDescription());
+        holder.publicationDescription.setText(currentItem.getCreators().getAssociationName() + " " + currentItem.getCreators().getUniversityName());
+        holder.publicationNumber.setText("شماره " + currentItem.getNumber());
         Picasso.get().load(currentItem.getImageUrl()).into(holder.cardImage);
+
+        holder.publicationDescription.setSelected(true);
     }
 
     @Override
@@ -52,14 +57,16 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
 
         public ImageView cardImage;
         public AppCompatTextView publicationName;
-        public AppCompatTextView description;
+        public AppCompatTextView publicationNumber;
+        public AppCompatTextView publicationDescription;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             cardImage = itemView.findViewById(R.id.itemHomeCategoryCardImage);
             publicationName = itemView.findViewById(R.id.itemHomeCategoryCardPublicationName);
-            description = itemView.findViewById(R.id.itemHomeCategoryCardDescription);
+            publicationNumber = itemView.findViewById(R.id.itemHomeCategoryCardNumber);
+            publicationDescription = itemView.findViewById(R.id.itemHomeCategoryCardDescription);
         }
     }
 }
