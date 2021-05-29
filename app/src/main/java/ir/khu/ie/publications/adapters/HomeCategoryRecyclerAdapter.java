@@ -40,7 +40,7 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
 
         holder.categoryName.setText(currentItem.getCategoryName());
         holder.publicationsRecyclerView.setAdapter(new HomeCardRecyclerAdapter(context, currentItem.getCardsList()));
-        holder.publicationsRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+        holder.publicationsRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, true));
     }
 
     @Override

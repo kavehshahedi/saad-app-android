@@ -32,7 +32,7 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
     @Override
     public HomeCardRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_home_category_recycler, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_home_category_card, parent, false);
         return new HomeCardRecyclerAdapter.ViewHolder(view);
     }
 
