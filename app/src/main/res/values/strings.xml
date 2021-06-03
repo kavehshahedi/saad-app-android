@@ -11,4 +11,6 @@
     <string name="error_occurred_try_again">خطایی رخ داد. مجددا تلاش کنید.</string>
     <string name="publications">نشریات</string>
     <string name="plus_more">بیشتر+</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_box_hint">عنوان نشریه، دانشگاه، انجمن، سردبیر و …</string>
 </resources>

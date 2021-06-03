@@ -20,7 +20,7 @@ public class Publication {
     private final String associationId;
     @SerializedName("number")
     @Expose
-    private final int number;
+    private final String number;
     @SerializedName("image_url")
     @Expose
     private final String imageUrl;
@@ -55,7 +55,7 @@ public class Publication {
     @Expose
     private final Creators creators;
 
-    public Publication(String id, String title, String universityId, String associationId, int number, String imageUrl, String description,
+    public Publication(String id, String title, String universityId, String associationId, String number, String imageUrl, String description,
                        String fullDescription, String downloadUrl, Date releasedDate, boolean isPremium, int viewCount, int downloadCount,
                        float rate, boolean isEditorsChoice, Creators creators) {
         this.id = id;
@@ -92,7 +92,7 @@ public class Publication {
         return associationId;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
