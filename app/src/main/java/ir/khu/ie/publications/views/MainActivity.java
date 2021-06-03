@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeViewPage(GetMainPageResponse mainPage) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         adapter.addFragment(new HomeFragment(MainActivity.this, mainPage.getData().getSliders(), mainPage.getData().getCategories()), getResources().getString(R.string.home));
+        adapter.addFragment(new SearchFragment(MainActivity.this), getResources().getString(R.string.search));
 
         ViewPager viewPager = findViewById(R.id.mainActivityViewPager);
         viewPager.setAdapter(adapter);

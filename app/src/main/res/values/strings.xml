@@ -14,4 +14,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_box_hint">عنوان نشریه، دانشگاه، انجمن، سردبیر و …</string>
     <string name="download">دانلود</string>
+    <string name="search_no_result">نتیجه‌ای یافت نشد.</string>
+    <string name="search_text_short">متن وارد شده کوتاه است.</string>
 </resources>

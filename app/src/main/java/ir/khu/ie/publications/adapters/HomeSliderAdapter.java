@@ -23,7 +23,6 @@ public class HomeSliderAdapter extends SliderAdapter {
 
     @Override
     public void onBindImageSlide(int position, ImageSlideViewHolder viewHolder) {
-        Log.e("Slider", sliders.get(position).getSliderImageUrl());
         viewHolder.bindImageSlide(sliders.get(position).getSliderImageUrl());
     }
 }

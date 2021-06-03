@@ -10,26 +10,15 @@ import ir.khu.ie.publications.models.responses.Response;
 
 public class SearchResponse extends Response {
 
-    @SerializedName("data") @Expose
-    private Data data;
+    @SerializedName("data")
+    @Expose
+    private List<Publication> data;
 
     public SearchResponse(String status, String message) {
         super(status, message);
     }
 
-    public Data getData() {
+    public List<Publication> getData() {
         return data;
-    }
-
-    public class Data {
-        private final List<Publication> publications;
-
-        public Data(List<Publication> publications) {
-            this.publications = publications;
-        }
-
-        public List<Publication> getPublications() {
-            return publications;
-        }
     }
 }
