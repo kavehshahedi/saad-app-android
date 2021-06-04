@@ -370,7 +370,40 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
+                    android:id="@+id/publicationActivityInformationCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/shabnam"
+                    android:lines="1"
+                    android:text="@string/Information"
+
+                    android:textColor="@color/darkBlue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="25sp"
+                    app:autoSizeMinTextSize="20sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationBar" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/publicationActivityInformationRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/publicationActivityInformationCategory"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"/>
+
+               <!-- <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/publicationActivityPublicationName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -509,14 +542,36 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.95"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityCoverDesigner" />
+                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityCoverDesigner" />-->
+
+                <TextView
+                    android:id="@+id/publicationActivityDescriptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/shabnam"
+                    android:lines="1"
+                    android:text="@string/Description"
+                    android:textColor="@color/darkBlue"
+
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="25sp"
+                    app:autoSizeMinTextSize="20sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationRecycler" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/publicationActivityPublicationDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/shabnam_light"
                     android:text=""
@@ -528,7 +583,7 @@
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityPublicationNumber" />
+                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityDescriptionText" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/publicationActivityDownloadButton"

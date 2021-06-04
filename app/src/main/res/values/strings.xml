@@ -21,4 +21,6 @@
     <string name="mega_bytes">مگابایت</string>
     <string name="rate">امتیاز</string>
     <string name="people">نفر</string>
+    <string name="Information">اطلاعات</string>
+    <string name="Description">توضیحات</string>
 </resources>
