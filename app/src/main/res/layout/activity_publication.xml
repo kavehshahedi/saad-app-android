@@ -602,12 +602,45 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeStepGranularity="1sp"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:0.175"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/publicationActivityPublicationDescription"
                     app:layout_constraintWidth_percent="0.7" />
+
+                <TextView
+                    android:id="@+id/publicationActivityCommentsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/shabnam"
+                    android:lines="1"
+                    android:text="@string/Comments"
+
+                    android:textColor="@color/darkBlue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="25sp"
+                    app:autoSizeMinTextSize="20sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityDownloadButton" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/publicationActivityCommentsRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/publicationActivityCommentsText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/itemPublicationCommentImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.15"
+        app:layout_constraintDimensionRatio="1"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/itemPublicationCommentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/shabnam"
+        android:lines="1"
+        android:textColor="@color/darkBlue"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="12sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <per.wsj.library.AndRatingBar
+        android:id="@+id/itemPublicationCommentRate"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="16dp"
+        android:isIndicator="true"
+        android:rating="3"
+        android:stepSize="0.1"
+        app:keepOriginColor="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintWidth_percent="0.2"
+        app:starColor="@color/lightBlue" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/itemPublicationCommentDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentRate"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/shabnam"
+        android:maxLines="3"
+        android:minLines="1"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="12sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"/>
+
+    <View
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentDesc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
