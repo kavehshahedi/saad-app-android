@@ -2,21 +2,33 @@ package ir.khu.ie.publications.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.models.publications.Publication;
+import ir.khu.ie.publications.models.responses.app.GetPublicationResponse;
+import ir.khu.ie.publications.services.NetworkClientService;
+import ir.khu.ie.publications.services.api.AppAPI;
+import ir.khu.ie.publications.utils.LoadingDialog;
+import ir.khu.ie.publications.utils.ToastMessage;
+import ir.khu.ie.publications.views.PublicationActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecyclerAdapter.ViewHolder> {
     private final Context context;
@@ -46,6 +58,29 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
         Picasso.get().load(currentItem.getImageUrl()).into(holder.cardImage);
 
         holder.publicationDescription.setSelected(true);
+
+        holder.card.setOnClickListener(v -> {
+            LoadingDialog.showLoadingDialog(context);
+            NetworkClientService.getRetrofitClient().create(AppAPI.class).getPublication(currentItem.getId()).enqueue(new Callback<GetPublicationResponse>() {
+                @Override
+                public void onResponse(Call<GetPublicationResponse> call, Response<GetPublicationResponse> response) {
+                    LoadingDialog.dismissLoadingDialog();
+                    if (response.body() != null) {
+                        GetPublicationResponse publication = response.body();
+                        if (publication.getStatus().equals("OK")) {
+                            context.startActivity(new Intent(context, PublicationActivity.class).putExtra("publication", new Gson().toJson(publication.getData())));
+                        } else ToastMessage.showCustomToast(context, publication.getMessage());
+                    } else
+                        ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+
+                @Override
+                public void onFailure(Call<GetPublicationResponse> call, Throwable t) {
+                    LoadingDialog.dismissLoadingDialog();
+                    ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+            });
+        });
     }
 
     @Override
@@ -55,7 +90,8 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView cardImage;
+        public CardView card;
+        public AppCompatImageView cardImage;
         public AppCompatTextView publicationName;
         public AppCompatTextView publicationNumber;
         public AppCompatTextView publicationDescription;
@@ -63,6 +99,7 @@ public class HomeCardRecyclerAdapter extends RecyclerView.Adapter<HomeCardRecycl
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            card = itemView.findViewById(R.id.itemHomeCategoryCard);
             cardImage = itemView.findViewById(R.id.itemHomeCategoryCardImage);
             publicationName = itemView.findViewById(R.id.itemHomeCategoryCardPublicationName);
             publicationNumber = itemView.findViewById(R.id.itemHomeCategoryCardNumber);

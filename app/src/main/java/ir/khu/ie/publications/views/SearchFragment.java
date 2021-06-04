@@ -107,7 +107,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onFailure(Call<SearchResponse> call, Throwable t) {
                 LoadingDialog.dismissLoadingDialog();
-                ToastMessage.showCustomToast(context, t.getMessage());
+                ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
             }
         });
     }

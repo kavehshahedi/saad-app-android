@@ -45,6 +45,9 @@ public class Publication {
     @SerializedName("downloads_count")
     @Expose
     private final int downloadCount;
+    @SerializedName("size")
+    @Expose
+    private final float size;
     @SerializedName("rate")
     @Expose
     private final float rate;
@@ -57,7 +60,7 @@ public class Publication {
 
     public Publication(String id, String title, String universityId, String associationId, String number, String imageUrl, String description,
                        String fullDescription, String downloadUrl, Date releasedDate, boolean isPremium, int viewCount, int downloadCount,
-                       float rate, boolean isEditorsChoice, Creators creators) {
+                       float size, float rate, boolean isEditorsChoice, Creators creators) {
         this.id = id;
         this.title = title;
         this.universityId = universityId;
@@ -71,6 +74,7 @@ public class Publication {
         this.isPremium = isPremium;
         this.viewCount = viewCount;
         this.downloadCount = downloadCount;
+        this.size = size;
         this.rate = rate;
         this.isEditorsChoice = isEditorsChoice;
         this.creators = creators;
@@ -126,6 +130,10 @@ public class Publication {
 
     public int getDownloadCount() {
         return downloadCount;
+    }
+
+    public float getSize() {
+        return size;
     }
 
     public float getRate() {
