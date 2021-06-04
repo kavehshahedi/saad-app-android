@@ -16,6 +16,9 @@
     <string name="download">دانلود</string>
     <string name="search_no_result">نتیجه‌ای یافت نشد.</string>
     <string name="search_text_short">متن وارد شده کوتاه است.</string>
-    <string name="DataAmountText">حجم</string>
-    <string name="InstallText">نصب</string>
+    <string name="size">حجم</string>
+    <string name="install">نصب</string>
+    <string name="mega_bytes">مگابایت</string>
+    <string name="rate">امتیاز</string>
+    <string name="people">نفر</string>
 </resources>
