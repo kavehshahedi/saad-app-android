@@ -48,4 +48,5 @@ dependencies {
         exclude group: "com.android.support:support-compat"
     }
     implementation 'com.github.giswangsj:AndRatingBar:1.0.5'
+    implementation 'com.github.samanzamani.persiandate:PersianDate:0.8'
 }

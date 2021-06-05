@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,14 +12,15 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.models.publications.PublicationInformation;
 import per.wsj.library.AndRatingBar;
 
 public class PublicationCommentRecyclerAdapter extends RecyclerView.Adapter<PublicationCommentRecyclerAdapter.ViewHolder>{
 
     public final Context context;
-    public final List<> comments;
+    public final List<PublicationInformation> comments;
 
-    public PublicationCommentRecyclerAdapter(Context context, List<> comments){
+    public PublicationCommentRecyclerAdapter(Context context, List<PublicationInformation> comments){
         this.context = context;
         this.comments = comments;
     }
@@ -28,7 +28,7 @@ public class PublicationCommentRecyclerAdapter extends RecyclerView.Adapter<Publ
     @Override
     public PublicationCommentRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_publicationactivity_comment, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_publication_comment, parent, false);
         return new PublicationCommentRecyclerAdapter.ViewHolder(view);
     }
 

@@ -11,13 +11,21 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.adapters.PublicationInformationRecyclerAdapter;
 import ir.khu.ie.publications.models.publications.Publication;
+import ir.khu.ie.publications.models.publications.PublicationInformation;
 import per.wsj.library.AndRatingBar;
+import saman.zamani.persiandate.PersianDate;
 
 public class PublicationActivity extends AppCompatActivity {
     Publication publication;
@@ -31,18 +39,6 @@ public class PublicationActivity extends AppCompatActivity {
 
         AppCompatImageView publicationImage = findViewById(R.id.publicationActivityPublicationImage);
         Picasso.get().load(publication.getImageUrl()).into(publicationImage);
-
-        AppCompatTextView publicationName = findViewById(R.id.publicationActivityPublicationName);
-        publicationName.setText(publication.getTitle());
-
-        AppCompatTextView universityName = findViewById(R.id.publicationActivityUniversityName);
-        universityName.setText(publication.getUniversityId());
-
-        AppCompatTextView associationName = findViewById(R.id.publicationActivityAssociationName);
-        associationName.setText(publication.getAssociationId());
-
-        AppCompatTextView publicationNumber = findViewById(R.id.publicationActivityPublicationNumber);
-        publicationNumber.setText(publication.getNumber());
 
         AppCompatTextView publicationDescription = findViewById(R.id.publicationActivityPublicationDescription);
         publicationDescription.setText(publication.getFullDescription());
@@ -74,5 +70,38 @@ public class PublicationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        List<PublicationInformation> information = new ArrayList<>();
+        if (publication.getCreators().getUniversityName() != null && !publication.getCreators().getUniversityName().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.university), publication.getCreators().getUniversityName()));
+        if (publication.getCreators().getAssociationName() != null && !publication.getCreators().getAssociationName().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.association), publication.getCreators().getAssociationName()));
+        if (publication.getCreators().getCeo() != null && !publication.getCreators().getCeo().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.ceo), publication.getCreators().getCeo()));
+        if (publication.getCreators().getPageDesigner() != null && !publication.getCreators().getPageDesigner().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.page_designer), publication.getCreators().getPageDesigner()));
+        if (publication.getCreators().getCoverDesigner() != null && !publication.getCreators().getCoverDesigner().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.cover_designer), publication.getCreators().getCoverDesigner()));
+        if (publication.getNumber() != null && !publication.getNumber().isEmpty())
+            information.add(new PublicationInformation(getString(R.string.number), publication.getNumber()));
+        if (publication.getReleasedDate() != null) {
+            PersianDate date = new PersianDate(publication.getReleasedDate());
+            String seasonName = "";
+            if (date.getShMonth() >= 1 && date.getShMonth() <= 3)
+                seasonName = getString(R.string.spring);
+            if (date.getShMonth() >= 4 && date.getShMonth() <= 6)
+                seasonName = getString(R.string.summer);
+            if (date.getShMonth() >= 7 && date.getShMonth() <= 9)
+                seasonName = getString(R.string.fall);
+            if (date.getShMonth() >= 10 && date.getShMonth() <= 12)
+                seasonName = getString(R.string.winter);
+
+            information.add(new PublicationInformation(getString(R.string.release_date), seasonName + " " + date.getShYear()));
+        }
+
+        PublicationInformationRecyclerAdapter informationAdapter = new PublicationInformationRecyclerAdapter(PublicationActivity.this, information);
+        RecyclerView informationRecyclerView = findViewById(R.id.publicationActivityInformationRecycler);
+        informationRecyclerView.setAdapter(informationAdapter);
+        informationRecyclerView.setLayoutManager(new LinearLayoutManager(PublicationActivity.this));
     }
 }

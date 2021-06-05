@@ -24,4 +24,15 @@
     <string name="Information">اطلاعات</string>
     <string name="Description">توضیحات</string>
     <string name="Comments">نظرات</string>
+    <string name="university">دانشگاه</string>
+    <string name="association">انجمن</string>
+    <string name="ceo">سردبیر</string>
+    <string name="page_designer">صفحه آرا</string>
+    <string name="cover_designer">طراح جلد</string>
+    <string name="number">شماره</string>
+    <string name="spring">بهار</string>
+    <string name="summer">تابستان</string>
+    <string name="fall">پاییز</string>
+    <string name="winter">زمستان</string>
+    <string name="release_date">تاریخ انتشار</string>
 </resources>

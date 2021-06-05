@@ -1,651 +1,521 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
-            app:cardCornerRadius="7dp"
-            app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/publicationActivityPublicationImageCardView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="12dp"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="10dp"
-                    app:layout_constraintDimensionRatio="0.7:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.7">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/publicationActivityPublicationImage"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/publicationActivityInformationBar"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="1:0.225"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/publicationActivityPublicationImageCardView">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/publicationActivityDataAmountConstraintLayout"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/publicationActivityPublicationImageCardView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/publicationActivityEditorsChoiceConstraintLayout"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="10dp"
+                        app:layout_constraintDimensionRatio="0.7:1"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.7">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityDataAmountText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:text="@string/size"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp"
-                            app:autoSizeMaxTextSize="12sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityAmountOfData"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityAmountOfData"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="2dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:autoSizeMaxTextSize="18sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            android:textColor="@color/grey"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityBinaryPower"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityDataAmountText" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/publicationActivityPublicationImage"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:scaleType="centerCrop"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityBinaryPower"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="12dp"
-                            android:fontFamily="@font/shabnam_light"
-                            android:lines="1"
-                            android:text="@string/mega_bytes"
-                            android:textAlignment="center"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp"
-                            app:autoSizeMaxTextSize="12sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityAmountOfData" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/publicationActivityEditorsChoiceConstraintLayout"
+                        android:id="@+id/publicationActivityInformationBar"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/publicationActivityDataAmountConstraintLayout"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintDimensionRatio="1:0.225"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/publicationActivityPublicationImageCardView">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/publicationActivityEditorsChoiceImage"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/publicationActivityDataAmountConstraintLayout"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            app:layout_constraintWidth_percent="0.7"
-                            app:layout_constraintDimensionRatio="1"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_editors_choice"
-                            android:tint="@color/grey"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/publicationActivityEditorsChoiceConstraintLayout"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityDataAmountText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:text="@string/size"
+                                android:textColor="@color/grey"
+                                android:textSize="12sp"
+                                app:autoSizeMaxTextSize="12sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityAmountOfData"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityAmountOfData"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:textAlignment="center"
+                                android:textColor="@color/grey"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityBinaryPower"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityDataAmountText" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityBinaryPower"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_marginBottom="12dp"
+                                android:fontFamily="@font/shabnam_light"
+                                android:lines="1"
+                                android:text="@string/mega_bytes"
+                                android:textAlignment="center"
+                                android:textColor="@color/grey"
+                                android:textSize="12sp"
+                                app:autoSizeMaxTextSize="12sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityAmountOfData" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/publicationActivityEditorsChoiceConstraintLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/publicationActivityDataAmountConstraintLayout"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/publicationActivityEditorsChoiceImage"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/ic_editors_choice"
+                                android:tint="@color/grey"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.7" />
+
+                            <View
+                                style="@style/Divider.Vertical"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/publicationActivityRateConstraintLayout"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/publicationActivityEditorsChoiceConstraintLayout"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityInstallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:text="@string/download"
+                                android:textColor="@color/grey"
+                                android:textSize="12sp"
+                                app:autoSizeMaxTextSize="12sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityNumberOfDownloads"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityNumberOfDownloads"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:textAlignment="center"
+                                android:textColor="@color/grey"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityDecimalPower"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityInstallText" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityDecimalPower"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="12dp"
+                                android:fontFamily="@font/shabnam_light"
+                                android:lines="1"
+                                android:text="@string/people"
+                                android:textAlignment="center"
+                                android:textColor="@color/grey"
+                                android:textSize="12sp"
+                                app:autoSizeMaxTextSize="12sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityNumberOfDownloads" />
+
+                            <View
+                                style="@style/Divider.Vertical"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/publicationActivityRateConstraintLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityNumberOfRatings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:text="@string/rate"
+                                android:textColor="@color/grey"
+                                android:textSize="12sp"
+                                app:autoSizeMaxTextSize="12sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityRateNumber"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/publicationActivityRateNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/shabnam"
+                                android:lines="1"
+                                android:textColor="@color/grey"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:autoSizeMaxTextSize="18sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeStepGranularity="1sp"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toTopOf="@+id/publicationActivityRateStars"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityNumberOfRatings" />
+
+                            <per.wsj.library.AndRatingBar
+                                android:id="@+id/publicationActivityRateStars"
+                                android:layout_width="0dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="12dp"
+                                android:isIndicator="true"
+                                android:rating="4.7"
+                                android:stepSize="0.1"
+                                app:keepOriginColor="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/publicationActivityRateNumber"
+                                app:layout_constraintWidth_percent="0.75"
+                                app:starColor="@color/lightBlue" />
+
+                            <View
+                                style="@style/Divider.Vertical"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:id="@+id/view"
+                            style="@style/Divider.Horizontal"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <View
-                            style="@style/Divider.Vertical"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
+                            style="@style/Divider.Horizontal"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/publicationActivityRateConstraintLayout"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/publicationActivityEditorsChoiceConstraintLayout"
-                        app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/publicationActivityInformationCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/shabnam"
+                        android:lines="1"
+                        android:text="@string/Information"
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityInstallText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:text="@string/download"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp"
-                            app:autoSizeMaxTextSize="12sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityNumberOfDownloads"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityNumberOfDownloads"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="2dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:textColor="@color/grey"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textAlignment="center"
-                            app:autoSizeMaxTextSize="18sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityDecimalPower"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityInstallText" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityDecimalPower"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="12dp"
-                            android:fontFamily="@font/shabnam_light"
-                            android:lines="1"
-                            android:text="@string/people"
-                            android:textAlignment="center"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp"
-                            app:autoSizeMaxTextSize="12sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityNumberOfDownloads" />
-
-                        <View
-                            style="@style/Divider.Vertical"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/publicationActivityRateConstraintLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="@color/darkBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="16sp"
+                        app:autoSizeMinTextSize="12sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/publicationActivityNumberOfDownloadsConstraintLayout"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationBar" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityNumberOfRatings"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:text="@string/rate"
-                            android:textColor="@color/grey"
-                            android:textSize="12sp"
-                            app:autoSizeMaxTextSize="12sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityRateNumber"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/publicationActivityRateNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="2dp"
-                            android:fontFamily="@font/shabnam"
-                            android:lines="1"
-                            android:textSize="18sp"
-                            android:textColor="@color/grey"
-                            android:textStyle="bold"
-                            app:autoSizeMaxTextSize="18sp"
-                            app:autoSizeMinTextSize="10sp"
-                            app:autoSizeStepGranularity="1sp"
-                            app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toTopOf="@+id/publicationActivityRateStars"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityNumberOfRatings" />
-
-                        <per.wsj.library.AndRatingBar
-                            android:id="@+id/publicationActivityRateStars"
-                            android:layout_width="0dp"
-                            android:layout_height="16dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="12dp"
-                            android:isIndicator="true"
-                            android:rating="4.7"
-                            android:stepSize="0.1"
-                            app:keepOriginColor="false"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/publicationActivityRateNumber"
-                            app:layout_constraintWidth_percent="0.75"
-                            app:starColor="@color/lightBlue" />
-
-                        <View
-                            style="@style/Divider.Vertical"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <View
-                        android:id="@+id/view"
-                        style="@style/Divider.Horizontal"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/publicationActivityInformationRecycler"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/publicationActivityInformationCategory" />
 
-                    <View
-                        style="@style/Divider.Horizontal"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
+                    <TextView
+                        android:id="@+id/publicationActivityDescriptionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/shabnam"
+                        android:lines="1"
+                        android:text="@string/Description"
+                        android:textColor="@color/darkBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="16sp"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationRecycler" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/publicationActivityPublicationDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/shabnam_light"
+                        android:text=""
+                        android:textAlignment="viewEnd"
+                        android:textSize="12sp"
+                        app:autoSizeMaxTextSize="12sp"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/publicationActivityDescriptionText" />
+
+                    <TextView
+                        android:id="@+id/publicationActivityCommentsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/shabnam"
+                        android:lines="1"
+                        android:text="@string/Comments"
+
+                        android:textColor="@color/darkBlue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="16sp"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/publicationActivityPublicationDescription" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/publicationActivityCommentsRecycler"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/publicationActivityCommentsText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/publicationActivityInformationCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:text="@string/Information"
+            </androidx.cardview.widget.CardView>
 
-                    android:textColor="@color/darkBlue"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:autoSizeMaxTextSize="25sp"
-                    app:autoSizeMinTextSize="20sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationBar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/publicationActivityInformationRecycler"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/publicationActivityInformationCategory"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"/>
+    </ScrollView>
 
-               <!-- <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityPublicationName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationBar" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/publicationActivityDownloadButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/lightGreen"
+        android:elevation="15dp"
+        android:fontFamily="@font/shabnam"
+        android:text="@string/download"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:0.15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityUniversityName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityPublicationName" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityAssociationName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityUniversityName" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityCeo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityAssociationName" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityPageDesigner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityCeo" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityCoverDesigner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityPageDesigner" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityPublicationNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityCoverDesigner" />-->
-
-                <TextView
-                    android:id="@+id/publicationActivityDescriptionText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:text="@string/Description"
-                    android:textColor="@color/darkBlue"
-
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:autoSizeMaxTextSize="25sp"
-                    app:autoSizeMinTextSize="20sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityInformationRecycler" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/publicationActivityPublicationDescription"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam_light"
-                    android:text=""
-                    android:textAlignment="viewEnd"
-                    android:textSize="12sp"
-                    app:autoSizeMaxTextSize="12sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityDescriptionText" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/publicationActivityDownloadButton"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/round_button"
-                    android:backgroundTint="@color/lightGreen"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:text="@string/download"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    app:autoSizeMaxTextSize="14sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintDimensionRatio="1:0.175"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityPublicationDescription"
-                    app:layout_constraintWidth_percent="0.7" />
-
-                <TextView
-                    android:id="@+id/publicationActivityCommentsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/shabnam"
-                    android:lines="1"
-                    android:text="@string/Comments"
-
-                    android:textColor="@color/darkBlue"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:autoSizeMaxTextSize="25sp"
-                    app:autoSizeMinTextSize="20sp"
-                    app:autoSizeStepGranularity="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/publicationActivityDownloadButton" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/publicationActivityCommentsRecycler"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/publicationActivityCommentsText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
