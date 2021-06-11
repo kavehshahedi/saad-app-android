@@ -11,7 +11,7 @@
         android:id="@+id/fragmentProfileMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,47 +56,166 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragmentProfileImageView" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragmentProfileSignInExplanation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/shabnam_light"
-            android:text="@string/sign_in_explanation"
-            android:textAlignment="center"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:autoSizeMaxTextSize="12sp"
-            app:autoSizeMinTextSize="10sp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.65" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/fragmentProfileLoginButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/lightGreen"
-            android:elevation="16dp"
-            android:fontFamily="@font/shabnam"
-            android:text="@string/sign_in"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            app:layout_constraintDimensionRatio="1:0.16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentProfileSignInExplanation"
-            app:layout_constraintWidth_percent="0.75" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragmentProfileSignInLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentProfileNameTextView">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragmentProfileSignInExplanation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/shabnam_light"
+                android:text="@string/sign_in_explanation"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="12sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.426"
+                app:layout_constraintWidth_percent="0.65" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragmentProfileLoginButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/lightGreen"
+                android:elevation="16dp"
+                android:fontFamily="@font/shabnam"
+                android:text="@string/sign_in"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintDimensionRatio="1:0.16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentProfileSignInExplanation"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragmentProfileEditLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentProfileNameTextView"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragmentProfileFavoritesButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:drawableEnd="@drawable/ic_favorites"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/lightGreen"
+                android:text="@string/Favorites"
+                android:elevation="16dp"
+                android:fontFamily="@font/shabnam"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:iconTint="#9C27B0"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintDimensionRatio="1:0.25"
+                app:layout_constraintBottom_toTopOf="@+id/fragmentProfileEditProfileButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragmentProfileEditProfileButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/fragmentProfilePublishButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:drawableEnd="@drawable/ic_edit"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/lightGreen"
+                android:text="@string/EditProfile"
+                android:elevation="16dp"
+                android:fontFamily="@font/shabnam"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:iconTint="#9C27B0"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintDimensionRatio="1:0.25"                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentProfileFavoritesButton"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_marginTop="32dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragmentProfilePublishButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/fragmentProfileLogOutButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:drawableEnd="@drawable/ic_publish"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/grey"
+                android:text="@string/PublishMagazine"
+                android:elevation="16dp"
+                android:fontFamily="@font/shabnam"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/darkBlue"
+                app:iconTint="#9C27B0"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintDimensionRatio="1:0.25"                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentProfileEditProfileButton"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_marginTop="32dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragmentProfileLogOutButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="?android:attr/borderlessButtonStyle"
+                android:drawableEnd="@drawable/ic_logout"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/lightGreen"
+                android:text="@string/LogOut"
+                android:elevation="16dp"
+                android:fontFamily="@font/shabnam"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:iconTint="#9C27B0"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintDimensionRatio="1:0.25"                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentProfilePublishButton"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="30dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -247,7 +366,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fragmentProfileEnterPinLayoutCancel"

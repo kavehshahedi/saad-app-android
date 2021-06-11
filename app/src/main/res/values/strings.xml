@@ -44,4 +44,8 @@
     <string name="sign_in_explanation_alt">برای ورود شماره همراه خود را وارد کنید.</string>
     <string name="EnterPinExplanation">کد ارسال شده را وارد کنید</string>
     <string name="Continue">ادامه</string>
+    <string name="Favorites">محبوب ها</string>
+    <string name="EditProfile">تغییر حساب</string>
+    <string name="PublishMagazine">انتشار مجله(به زودی)</string>
+    <string name="LogOut">خروج از حساب</string>
 </resources>
