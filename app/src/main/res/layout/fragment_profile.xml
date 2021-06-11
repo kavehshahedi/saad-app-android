@@ -11,7 +11,7 @@
         android:id="@+id/fragmentProfileMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +101,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentProfileEnterNumberLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
@@ -227,6 +228,88 @@
             android:elevation="16dp"
             android:fontFamily="@font/shabnam"
             android:text="@string/get_otp_code"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:0.16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.75" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentProfileEnterPinLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragmentProfileEnterPinLayoutCancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_cancel"
+            android:tint="@color/grey"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.075" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragmentProfileEnterPinExplanation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/shabnam_light"
+            android:text="@string/EnterPinExplanation"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="12sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/fragmentProfilePinView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.chaos.view.PinView
+            android:id="@+id/fragmentProfilePinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:itemRadius="10dp"
+            android:itemBackground="@color/BackGround"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fragmentProfileContinueButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/lightGreen"
+            android:elevation="16dp"
+            android:fontFamily="@font/shabnam"
+            android:text="@string/Continue"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp"
