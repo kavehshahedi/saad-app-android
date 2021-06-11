@@ -35,6 +35,11 @@
     <string name="fall">پاییز</string>
     <string name="winter">زمستان</string>
     <string name="release_date">تاریخ انتشار</string>
-    <string name="SignInExplanation">برای برخورداری از ویژگی های بیشتر مانند شخصی سازی پروفایل، با وارد کردن شماره خود ثبت نام کنید</string>
-    <string name="SignIn">ثبت نام</string>
+    <string name="sign_in_explanation">برای برخورداری از ویژگی های بیشتر مانند شخصی سازی پروفایل، با وارد کردن شماره خود ثبت نام کنید</string>
+    <string name="sign_in">ورود به حساب کاربری</string>
+    <string name="guest_user">کاربر مهمان</string>
+    <string name="ir_number_code">+98</string>
+    <string name="sample_phone_number">9123456789</string>
+    <string name="get_otp_code">دریافت کد تایید</string>
+    <string name="sign_in_explanation_alt">برای ورود شماره همراه خود را وارد کنید.</string>
 </resources>
