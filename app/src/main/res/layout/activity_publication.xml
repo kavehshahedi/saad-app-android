@@ -389,7 +389,7 @@
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/shabnam"
                         android:lines="1"
-                        android:text="@string/Information"
+                        android:text="@string/information"
 
                         android:textColor="@color/darkBlue"
                         android:textSize="16sp"
@@ -424,7 +424,7 @@
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/shabnam"
                         android:lines="1"
-                        android:text="@string/Description"
+                        android:text="@string/description"
                         android:textColor="@color/darkBlue"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -464,7 +464,7 @@
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/shabnam"
                         android:lines="1"
-                        android:text="@string/Comments"
+                        android:text="@string/comments"
 
                         android:textColor="@color/darkBlue"
                         android:textSize="16sp"

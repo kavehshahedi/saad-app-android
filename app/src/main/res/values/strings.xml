@@ -21,9 +21,9 @@
     <string name="mega_bytes">مگابایت</string>
     <string name="rate">امتیاز</string>
     <string name="people">نفر</string>
-    <string name="Information">اطلاعات</string>
-    <string name="Description">توضیحات</string>
-    <string name="Comments">نظرات</string>
+    <string name="information">اطلاعات</string>
+    <string name="description">توضیحات</string>
+    <string name="comments">نظرات</string>
     <string name="university">دانشگاه</string>
     <string name="association">انجمن</string>
     <string name="ceo">سردبیر</string>
@@ -42,10 +42,10 @@
     <string name="sample_phone_number">9123456789</string>
     <string name="get_otp_code">دریافت کد تایید</string>
     <string name="sign_in_explanation_alt">برای ورود شماره همراه خود را وارد کنید.</string>
-    <string name="EnterPinExplanation">کد ارسال شده را وارد کنید</string>
-    <string name="Continue">ادامه</string>
-    <string name="Favorites">نشان شده ها</string>
-    <string name="EditProfile">ویرایش پروفایل</string>
-    <string name="PublishMagazine">انتشار نشریه(به زودی)</string>
-    <string name="LogOut">خروج از حساب</string>
+    <string name="enter_otp_code">کد ارسال شده را وارد کنید</string>
+    <string name="favorites">نشان شده ها</string>
+    <string name="edit_profile">ویرایش پروفایل</string>
+    <string name="publish_magazine">انتشار نشریه (به زودی)</string>
+    <string name="log_out">خروج از حساب</string>
+    <string name="continue_text">ادامه</string>
 </resources>
