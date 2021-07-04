@@ -48,4 +48,6 @@
     <string name="publish_magazine">انتشار نشریه (به زودی)</string>
     <string name="log_out">خروج از حساب</string>
     <string name="continue_text">ادامه</string>
+    <string name="invalid_phone_number">شماره وارد شده معتبر نمیباشد.</string>
+    <string name="logged_in_successfully">با موفقیت وارد شدید.</string>
 </resources>

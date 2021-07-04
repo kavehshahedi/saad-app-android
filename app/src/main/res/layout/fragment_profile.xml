@@ -11,7 +11,7 @@
         android:id="@+id/fragmentProfileMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
             android:id="@+id/fragmentProfileSignInLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@+id/fragmentProfileNameTextView">
 
 
@@ -116,7 +116,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -371,7 +371,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fragmentProfileEnterPinLayoutCancel"
@@ -415,8 +415,8 @@
             android:id="@+id/fragmentProfilePinCardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.65"
-            app:layout_constraintDimensionRatio="1:0.35"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintDimensionRatio="1:0.275"
             app:cardElevation="12dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -432,6 +432,7 @@
                     android:id="@+id/fragmentProfilePinView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.9"
                     app:itemRadius="6dp"
                     app:itemSpacing="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"

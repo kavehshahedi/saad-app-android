@@ -15,6 +15,7 @@ import ir.khu.ie.publications.models.responses.auth.GetAccountResponse;
 import ir.khu.ie.publications.services.NetworkClientService;
 import ir.khu.ie.publications.services.api.AuthAPI;
 import ir.khu.ie.publications.utils.AlertDialogCustomizer;
+import ir.khu.ie.publications.utils.SaveManager;
 import ir.khu.ie.publications.utils.Variables;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,13 +37,18 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void getAccount() {
-        NetworkClientService.getRetrofitClient().create(AuthAPI.class).getAccount(getPhoneNumber(), getAccessToken()).enqueue(new Callback<GetAccountResponse>() {
+        NetworkClientService.getRetrofitClient().create(AuthAPI.class)
+                .getAccount(SaveManager.loadPhone(SplashActivity.this), SaveManager.loadAccessToken(SplashActivity.this))
+                .enqueue(new Callback<GetAccountResponse>() {
             @Override
             public void onResponse(Call<GetAccountResponse> call, Response<GetAccountResponse> response) {
                 if (response.body() != null) {
                     GetAccountResponse account = response.body();
                     if (account.getStatus().equals("OK")) {
                         Variables.accountData = account.getData();
+                        SaveManager.setAccessToken(SplashActivity.this, account.getData().getAccessToken());
+                        SaveManager.setPhone(SplashActivity.this, account.getData().getPhone());
+
                         if (!account.getMessage().equals(""))
                             showSingleButtonAlertDialog(account.getMessage(), getString(R.string.informal_ok), ((dialog, which) -> loadMainActivity()));
                         else loadMainActivity();
@@ -75,14 +81,6 @@ public class SplashActivity extends AppCompatActivity {
                     }, 500)));
         } catch (Exception ignored) {
         }
-    }
-
-    private String getPhoneNumber() {
-        return getSharedPreferences("_", MODE_PRIVATE).getString("phone", "-1");
-    }
-
-    private String getAccessToken() {
-        return getSharedPreferences("_", MODE_PRIVATE).getString("access_token", "-1");
     }
 
     private void showSingleButtonAlertDialog(String message, String buttonName, DialogInterface.OnClickListener clickListener) {
