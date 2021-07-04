@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeViewPage(GetMainPageResponse mainPage) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
-        adapter.addFragment(new HomeFragment(MainActivity.this, mainPage.getData().getSliders(), mainPage.getData().getCategories()), getResources().getString(R.string.home));
-        adapter.addFragment(new SearchFragment(MainActivity.this), getResources().getString(R.string.search));
         adapter.addFragment(new ProfileFragment(MainActivity.this, Variables.accountData), getResources().getString(R.string.profile));
+        adapter.addFragment(new SearchFragment(MainActivity.this), getResources().getString(R.string.search));
+        adapter.addFragment(new HomeFragment(MainActivity.this, mainPage.getData().getSliders(), mainPage.getData().getCategories()), getResources().getString(R.string.home));
 
         ViewPager viewPager = findViewById(R.id.mainActivityViewPager);
         viewPager.setAdapter(adapter);
@@ -84,6 +84,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //viewPager.setCurrentItem(2);
+        viewPager.setCurrentItem(2);
     }
 }

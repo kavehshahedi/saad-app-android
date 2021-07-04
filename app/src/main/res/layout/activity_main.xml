@@ -19,6 +19,7 @@
         android:id="@+id/mainActivityNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layoutDirection="rtl"
         app:layout_constraintDimensionRatio="1:0.16"
         app:backgroundColor="@color/lightBlue"
         app:layout_constraintBottom_toBottomOf="parent"

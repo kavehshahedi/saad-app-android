@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -103,5 +104,8 @@ public class PublicationActivity extends AppCompatActivity {
         RecyclerView informationRecyclerView = findViewById(R.id.publicationActivityInformationRecycler);
         informationRecyclerView.setAdapter(informationAdapter);
         informationRecyclerView.setLayoutManager(new LinearLayoutManager(PublicationActivity.this));
+
+        ScrollView scrollView = findViewById(R.id.publicationActivityScrollView);
+        scrollView.smoothScrollTo(0,0);
     }
 }
