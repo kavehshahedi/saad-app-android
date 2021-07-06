@@ -83,15 +83,18 @@ public class ProfileFragment extends Fragment {
 
     private void setupMainPage(View view) {
         AppCompatTextView usernameText = view.findViewById(R.id.fragmentProfileNameTextView);
+        AppCompatTextView phoneText = view.findViewById(R.id.fragmentProfilePhoneTextView);
         ConstraintLayout mainPageSingInLayout = view.findViewById(R.id.fragmentProfileSignInLayout);
         ConstraintLayout mainPageEditProfileLayout = view.findViewById(R.id.fragmentProfileEditLayout);
 
         if (!account.getPhone().equals("-1")) {
             usernameText.setText(account.getUserName());
+            phoneText.setText(account.getPhone());
             mainPageSingInLayout.setVisibility(View.INVISIBLE);
             mainPageEditProfileLayout.setVisibility(View.VISIBLE);
         } else {
             usernameText.setText(context.getResources().getString(R.string.guest_user));
+            phoneText.setText("");
             mainPageSingInLayout.setVisibility(View.VISIBLE);
             mainPageEditProfileLayout.setVisibility(View.INVISIBLE);
         }
@@ -264,7 +267,7 @@ public class ProfileFragment extends Fragment {
                                 if (account.getStatus().equals("OK")) {
                                     Variables.accountData.setUserName(account.getData().getUserName());
                                     updateAccount(account.getData());
-                                    ((AppCompatTextView) view.findViewById(R.id.fragmentProfileNameTextView)).setText(account.getData().getUserName());
+                                    setupMainPage(view);
                                     ToastMessage.showCustomToast(context, getString(R.string.updated_profile_successfully));
 
                                     sheet.dismiss();

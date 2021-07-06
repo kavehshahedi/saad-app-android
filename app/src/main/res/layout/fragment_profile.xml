@@ -11,7 +11,7 @@
         android:id="@+id/fragmentProfileMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/fragmentProfileImageGuideline"
-            app:layout_constraintWidth_percent="0.35" />
+            app:layout_constraintWidth_percent="0.35"
+            android:src="@drawable/ic_avatar"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/fragmentProfileNameTextView"
@@ -56,14 +57,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragmentProfileImageView" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragmentProfilePhoneTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/shabnam_light"
+            android:lines="1"
+            android:text="@string/guest_user"
+            android:textAlignment="center"
+            android:textColor="@color/darkBlue"
+            android:textSize="14sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentProfileNameTextView" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragmentProfileSignInLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentProfileNameTextView">
-
+            app:layout_constraintTop_toBottomOf="@+id/fragmentProfilePhoneTextView">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragmentProfileSignInExplanation"
@@ -471,6 +492,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragmentProfileEnterFavoritesLayout"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
