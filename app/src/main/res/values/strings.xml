@@ -53,4 +53,6 @@
     <string name="name">نام</string>
     <string name="save">ذخیره</string>
     <string name="cancel">انصراف</string>
+    <string name="edit_name_hint">نام جدید خود را اینجا وارد کنید.</string>
+    <string name="updated_profile_successfully">اطلاعات شما با موفیقت ویرایش شد!</string>
 </resources>

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.chaos.view.PinView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Objects;
 
@@ -27,6 +28,7 @@ import ir.khu.ie.publications.models.responses.Response;
 import ir.khu.ie.publications.models.responses.auth.GetAccountResponse;
 import ir.khu.ie.publications.services.NetworkClientService;
 import ir.khu.ie.publications.services.api.AuthAPI;
+import ir.khu.ie.publications.services.api.ProfileAPI;
 import ir.khu.ie.publications.utils.LoadingDialog;
 import ir.khu.ie.publications.utils.SaveManager;
 import ir.khu.ie.publications.utils.ToastMessage;
@@ -95,6 +97,7 @@ public class ProfileFragment extends Fragment {
         }
 
         view.findViewById(R.id.fragmentProfileLoginButton).setOnClickListener(v -> changePage(ProfilePageType.ENTER_NUMBER));
+        view.findViewById(R.id.fragmentProfileEditProfileButton).setOnClickListener(v -> openChangeNameSheet(view));
     }
 
     private void setupLoginPage(View view) {
@@ -230,6 +233,81 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void openChangeNameSheet(View view) {
+        BottomSheetDialog sheet = new BottomSheetDialog(context);
+        sheet.setContentView(R.layout.sheet_edit_name);
+
+        AppCompatEditText nameInput = sheet.findViewById(R.id.sheetEditNameNameEditText);
+        AppCompatButton saveButton = sheet.findViewById(R.id.sheetEditNameSaveButton);
+        AppCompatButton cancelButton = sheet.findViewById(R.id.sheetEditNameCancelButton);
+
+        Objects.requireNonNull(cancelButton).setOnClickListener(v -> sheet.dismiss());
+
+        Objects.requireNonNull(saveButton).setOnClickListener(v -> {
+            String name = Objects.requireNonNull(Objects.requireNonNull(nameInput).getText()).toString().trim();
+
+            if (name.length() < 3) {
+                return;
+            }
+
+            LoadingDialog.showLoadingDialog(context);
+            NetworkClientService.getRetrofitClient().create(ProfileAPI.class)
+                    .editName(Variables.accountData.getPhone(), name)
+                    .enqueue(new Callback<GetAccountResponse>() {
+                        @Override
+                        public void onResponse(Call<GetAccountResponse> call, retrofit2.Response<GetAccountResponse> response) {
+                            LoadingDialog.dismissLoadingDialog();
+                            if (response.body() != null) {
+                                GetAccountResponse account = response.body();
+                                if (account.getStatus().equals("OK")) {
+                                    Variables.accountData.setUserName(account.getData().getUserName());
+                                    updateAccount(account.getData());
+                                    ((AppCompatTextView) view.findViewById(R.id.fragmentProfileNameTextView)).setText(account.getData().getUserName());
+                                    ToastMessage.showCustomToast(context, getString(R.string.updated_profile_successfully));
+
+                                    sheet.dismiss();
+                                } else ToastMessage.showCustomToast(context, account.getMessage());
+                            } else
+                                ToastMessage.showCustomToast(context, getString(R.string.error_occurred_try_again));
+                        }
+
+                        @Override
+                        public void onFailure(Call<GetAccountResponse> call, Throwable t) {
+                            LoadingDialog.dismissLoadingDialog();
+                            ToastMessage.showCustomToast(context, getString(R.string.error_occurred_try_again));
+                        }
+                    });
+        });
+
+        saveButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.grey));
+        saveButton.setClickable(false);
+
+        Objects.requireNonNull(nameInput).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() < 3 || s.toString().equals(account.getUserName())) {
+                    saveButton.setClickable(false);
+                    saveButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.grey));
+                } else {
+                    saveButton.setClickable(true);
+                    saveButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightGreen));
+                }
+            }
+        });
+
+        sheet.show();
     }
 
     private void updateAccount(GetAccountResponse.Data account) {

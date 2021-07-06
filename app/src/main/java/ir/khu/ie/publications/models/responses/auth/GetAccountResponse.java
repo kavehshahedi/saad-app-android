@@ -26,7 +26,7 @@ public class GetAccountResponse extends Response {
         private final String phone;
         @SerializedName("user_name")
         @Expose
-        private final String userName;
+        private String userName;
         @SerializedName("jwt")
         @Expose
         private final String jwt;
@@ -55,6 +55,10 @@ public class GetAccountResponse extends Response {
 
         public String getAccessToken() {
             return accessToken;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
     }
 }
