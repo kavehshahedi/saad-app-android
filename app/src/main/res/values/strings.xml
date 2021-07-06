@@ -50,4 +50,7 @@
     <string name="continue_text">ادامه</string>
     <string name="invalid_phone_number">شماره وارد شده معتبر نمیباشد.</string>
     <string name="logged_in_successfully">با موفقیت وارد شدید.</string>
+    <string name="name">نام</string>
+    <string name="save">ذخیره</string>
+    <string name="cancel">انصراف</string>
 </resources>
