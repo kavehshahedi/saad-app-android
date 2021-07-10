@@ -1,6 +1,7 @@
 package ir.khu.ie.publications.views;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,16 +27,29 @@ import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.PublicationInformationRecyclerAdapter;
 import ir.khu.ie.publications.models.publications.Publication;
 import ir.khu.ie.publications.models.publications.PublicationInformation;
+import ir.khu.ie.publications.models.responses.app.SetFavoriteResponse;
+import ir.khu.ie.publications.services.NetworkClientService;
+import ir.khu.ie.publications.services.api.AppAPI;
+import ir.khu.ie.publications.utils.LoadingDialog;
+import ir.khu.ie.publications.utils.ToastMessage;
+import ir.khu.ie.publications.utils.Variables;
 import per.wsj.library.AndRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import saman.zamani.persiandate.PersianDate;
 
 public class PublicationActivity extends AppCompatActivity {
     Publication publication;
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publication);
+
+        context = this;
 
         publication = new Gson().fromJson(getIntent().getStringExtra("publication"), Publication.class);
 
@@ -72,6 +87,48 @@ public class PublicationActivity extends AppCompatActivity {
             }
         });
 
+        boolean contains = false;
+        AppCompatImageView bookmarkImage = findViewById(R.id.publicationActivityBookmarkImage);
+        for (String bookmark : Variables.accountData.getFavoritePublications()) {
+            if (bookmark.equals(publication.getId())) {
+                contains = true;
+                break;
+            }
+        }
+
+        if (contains)
+            bookmarkImage.setColorFilter(ContextCompat.getColor(context, R.color.lightBlue), android.graphics.PorterDuff.Mode.MULTIPLY);
+        else
+            bookmarkImage.setColorFilter(ContextCompat.getColor(context, R.color.lightGrey), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        bookmarkImage.setOnClickListener(v -> {
+            LoadingDialog.showLoadingDialog(context);
+            NetworkClientService.getRetrofitClient().create(AppAPI.class).setFavorite(publication.getId(), Variables.accountData.getPhone())
+                    .enqueue(new Callback<SetFavoriteResponse>() {
+                        @Override
+                        public void onResponse(Call<SetFavoriteResponse> call, Response<SetFavoriteResponse> response) {
+                            LoadingDialog.dismissLoadingDialog();
+
+                            if (response.body() != null) {
+                                SetFavoriteResponse fav = response.body();
+                                if (fav.getStatus().equals("OK")) {
+                                    bookmarkImage.setColorFilter(
+                                            ContextCompat.getColor(context, fav.getData().isBookmark() ? R.color.lightBlue : R.color.lightGrey),
+                                            android.graphics.PorterDuff.Mode.MULTIPLY);
+                                    Variables.accountData.setFavoritePublications(fav.getData().getFavoritePublications());
+                                } else ToastMessage.showCustomToast(context, fav.getMessage());
+                            } else
+                                ToastMessage.showCustomToast(context, getResources().getString(R.string.search));
+                        }
+
+                        @Override
+                        public void onFailure(Call<SetFavoriteResponse> call, Throwable t) {
+                            LoadingDialog.dismissLoadingDialog();
+                            ToastMessage.showCustomToast(context, getResources().getString(R.string.error_occurred_try_again));
+                        }
+                    });
+        });
+
         List<PublicationInformation> information = new ArrayList<>();
         if (publication.getCreators().getUniversityName() != null && !publication.getCreators().getUniversityName().isEmpty())
             information.add(new PublicationInformation(getString(R.string.university), publication.getCreators().getUniversityName()));
@@ -100,12 +157,12 @@ public class PublicationActivity extends AppCompatActivity {
             information.add(new PublicationInformation(getString(R.string.release_date), seasonName + " " + date.getShYear()));
         }
 
-        PublicationInformationRecyclerAdapter informationAdapter = new PublicationInformationRecyclerAdapter(PublicationActivity.this, information);
+        PublicationInformationRecyclerAdapter informationAdapter = new PublicationInformationRecyclerAdapter(context, information);
         RecyclerView informationRecyclerView = findViewById(R.id.publicationActivityInformationRecycler);
         informationRecyclerView.setAdapter(informationAdapter);
-        informationRecyclerView.setLayoutManager(new LinearLayoutManager(PublicationActivity.this));
+        informationRecyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         ScrollView scrollView = findViewById(R.id.publicationActivityScrollView);
-        scrollView.smoothScrollTo(0,0);
+        scrollView.smoothScrollTo(0, 0);
     }
 }

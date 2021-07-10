@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +18,23 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chaos.view.PinView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.List;
 import java.util.Objects;
 
 import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.adapters.SearchRecyclerAdapter;
+import ir.khu.ie.publications.models.publications.Publication;
 import ir.khu.ie.publications.models.responses.Response;
+import ir.khu.ie.publications.models.responses.app.SearchResponse;
 import ir.khu.ie.publications.models.responses.auth.GetAccountResponse;
 import ir.khu.ie.publications.services.NetworkClientService;
+import ir.khu.ie.publications.services.api.AppAPI;
 import ir.khu.ie.publications.services.api.AuthAPI;
 import ir.khu.ie.publications.services.api.ProfileAPI;
 import ir.khu.ie.publications.utils.LoadingDialog;
@@ -43,7 +51,7 @@ public class ProfileFragment extends Fragment {
 
     private ProfilePageType currentPage;
 
-    private ConstraintLayout mainPage, numberPage, pinPage;
+    private ConstraintLayout mainPage, numberPage, pinPage, favoritesPage;
 
     private String temporaryPhone;
 
@@ -73,6 +81,7 @@ public class ProfileFragment extends Fragment {
         mainPage = view.findViewById(R.id.fragmentProfileMainLayout);
         numberPage = view.findViewById(R.id.fragmentProfileEnterNumberLayout);
         pinPage = view.findViewById(R.id.fragmentProfileEnterPinLayout);
+        favoritesPage = view.findViewById(R.id.fragmentProfileEnterFavoritesLayout);
 
         setupMainPage(view);
         setupLoginPage(view);
@@ -101,6 +110,35 @@ public class ProfileFragment extends Fragment {
 
         view.findViewById(R.id.fragmentProfileLoginButton).setOnClickListener(v -> changePage(ProfilePageType.ENTER_NUMBER));
         view.findViewById(R.id.fragmentProfileEditProfileButton).setOnClickListener(v -> openChangeNameSheet(view));
+
+        view.findViewById(R.id.fragmentProfileFavoritesButton).setOnClickListener(v -> {
+            LoadingDialog.showLoadingDialog(context);
+
+            NetworkClientService.getRetrofitClient().create(AppAPI.class).getFavorites(Variables.accountData.getPhone())
+                    .enqueue(new Callback<SearchResponse>() {
+                        @Override
+                        public void onResponse(Call<SearchResponse> call, retrofit2.Response<SearchResponse> response) {
+                            LoadingDialog.dismissLoadingDialog();
+                            if (response.body() != null) {
+                                SearchResponse fav = response.body();
+                                if (fav.getStatus().equals("OK")) {
+                                    if (fav.getData().size() > 0) {
+                                        changePage(ProfilePageType.FAVORITES);
+                                        setupBookmarksPage(view, fav.getData());
+                                    } else
+                                        ToastMessage.showCustomToast(context, context.getResources().getString(R.string.no_favorite_publications));
+                                } else ToastMessage.showCustomToast(context, fav.getMessage());
+                            } else
+                                ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                        }
+
+                        @Override
+                        public void onFailure(Call<SearchResponse> call, Throwable t) {
+                            LoadingDialog.dismissLoadingDialog();
+                            ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                        }
+                    });
+        });
     }
 
     private void setupLoginPage(View view) {
@@ -313,6 +351,14 @@ public class ProfileFragment extends Fragment {
         sheet.show();
     }
 
+    private void setupBookmarksPage(View view, List<Publication> publications) {
+        RecyclerView recyclerView = view.findViewById(R.id.fragmentProfileFavoritesRecyclerView);
+        SearchRecyclerAdapter adapter = new SearchRecyclerAdapter(context, publications);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
+        recyclerView.scrollTo(0, 0);
+    }
+
     private void updateAccount(GetAccountResponse.Data account) {
         this.account = account;
     }
@@ -320,7 +366,8 @@ public class ProfileFragment extends Fragment {
     private void closePage() {
         if (currentPage == ProfilePageType.MAIN) return;
 
-        if (currentPage == ProfilePageType.ENTER_NUMBER) changePage(ProfilePageType.MAIN);
+        if (currentPage == ProfilePageType.FAVORITES) changePage(ProfilePageType.MAIN);
+        else if (currentPage == ProfilePageType.ENTER_NUMBER) changePage(ProfilePageType.MAIN);
         else changePage(ProfilePageType.ENTER_NUMBER);
     }
 
@@ -329,18 +376,27 @@ public class ProfileFragment extends Fragment {
         switch (type) {
             case MAIN:
                 mainPage.setVisibility(View.VISIBLE);
-                numberPage.setVisibility(View.INVISIBLE);
-                pinPage.setVisibility(View.INVISIBLE);
+                numberPage.setVisibility(View.GONE);
+                pinPage.setVisibility(View.GONE);
+                favoritesPage.setVisibility(View.GONE);
                 break;
             case ENTER_NUMBER:
-                mainPage.setVisibility(View.INVISIBLE);
+                mainPage.setVisibility(View.GONE);
                 numberPage.setVisibility(View.VISIBLE);
-                pinPage.setVisibility(View.INVISIBLE);
+                pinPage.setVisibility(View.GONE);
+                favoritesPage.setVisibility(View.GONE);
                 break;
             case ENTER_PIN:
-                mainPage.setVisibility(View.INVISIBLE);
-                numberPage.setVisibility(View.INVISIBLE);
+                mainPage.setVisibility(View.GONE);
+                numberPage.setVisibility(View.GONE);
                 pinPage.setVisibility(View.VISIBLE);
+                favoritesPage.setVisibility(View.GONE);
+                break;
+            case FAVORITES:
+                mainPage.setVisibility(View.GONE);
+                numberPage.setVisibility(View.GONE);
+                pinPage.setVisibility(View.GONE);
+                favoritesPage.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -348,6 +404,7 @@ public class ProfileFragment extends Fragment {
     private enum ProfilePageType {
         MAIN,
         ENTER_NUMBER,
-        ENTER_PIN
+        ENTER_PIN,
+        FAVORITES
     }
 }

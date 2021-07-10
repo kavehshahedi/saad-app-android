@@ -13,5 +13,6 @@
     <color name="darkBlue">#2e353f</color>
     <color name="lightGreen">#6dc271</color>
     <color name="grey">#858398</color>
+    <color name="lightGrey">#B6B4C6</color>
     <color name="lightOrange">#DF3F3F</color>
 </resources>
