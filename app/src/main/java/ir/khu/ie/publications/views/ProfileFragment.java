@@ -2,9 +2,9 @@ package ir.khu.ie.publications.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +38,14 @@ import ir.khu.ie.publications.services.api.AppAPI;
 import ir.khu.ie.publications.services.api.AuthAPI;
 import ir.khu.ie.publications.services.api.ProfileAPI;
 import ir.khu.ie.publications.utils.LoadingDialog;
+import ir.khu.ie.publications.utils.OnBackPressed;
 import ir.khu.ie.publications.utils.SaveManager;
 import ir.khu.ie.publications.utils.ToastMessage;
 import ir.khu.ie.publications.utils.Variables;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements OnBackPressed {
 
     private Context context;
     private GetAccountResponse.Data account;
@@ -54,6 +55,7 @@ public class ProfileFragment extends Fragment {
     private ConstraintLayout mainPage, numberPage, pinPage, favoritesPage;
 
     private String temporaryPhone;
+    private boolean doubleBackToExitPressedOnce;
 
     public ProfileFragment() {
     }
@@ -398,6 +400,22 @@ public class ProfileFragment extends Fragment {
                 pinPage.setVisibility(View.GONE);
                 favoritesPage.setVisibility(View.VISIBLE);
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage != ProfilePageType.MAIN) closePage();
+        else {
+            if (doubleBackToExitPressedOnce) {
+                requireActivity().finishAndRemoveTask();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            ToastMessage.showCustomToast(context, getString(R.string.tap_again_close));
+
+            new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
     }
 

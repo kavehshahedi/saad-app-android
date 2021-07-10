@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import java.util.List;
 
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.ViewPagerAdapter;
@@ -85,5 +88,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager.setCurrentItem(2);
+    }
+
+    @Override
+    public void onBackPressed() {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (Fragment f : fragments) {
+            if (f instanceof ProfileFragment)
+                ((ProfileFragment) f).onBackPressed();
+            else if(f instanceof HomeFragment)
+                ((HomeFragment) f).onBackPressed();
+        }
     }
 }

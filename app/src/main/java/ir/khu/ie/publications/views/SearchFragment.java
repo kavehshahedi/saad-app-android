@@ -2,6 +2,7 @@ package ir.khu.ie.publications.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,15 +25,17 @@ import ir.khu.ie.publications.models.responses.app.SearchResponse;
 import ir.khu.ie.publications.services.NetworkClientService;
 import ir.khu.ie.publications.services.api.AppAPI;
 import ir.khu.ie.publications.utils.LoadingDialog;
+import ir.khu.ie.publications.utils.OnBackPressed;
 import ir.khu.ie.publications.utils.ToastMessage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements OnBackPressed {
 
     private final float GUIDELINE_POSITION = 0.025f;
     private Context context;
+    private boolean doubleBackToExitPressedOnce;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -115,5 +118,18 @@ public class SearchFragment extends Fragment {
     private void updateSearchLayout(View view) {
         view.findViewById(R.id.fragmentSearchSearchButton).setVisibility(View.GONE);
         view.findViewById(R.id.fragmentSearchAlternativeSearchButton).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            requireActivity().finishAndRemoveTask();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        ToastMessage.showCustomToast(context, getString(R.string.tap_again_close));
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 }

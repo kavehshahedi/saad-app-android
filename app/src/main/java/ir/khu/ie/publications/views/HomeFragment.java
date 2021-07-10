@@ -2,6 +2,7 @@ package ir.khu.ie.publications.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,16 @@ import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.HomeCategoryRecyclerAdapter;
 import ir.khu.ie.publications.adapters.HomeSliderAdapter;
 import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
+import ir.khu.ie.publications.utils.OnBackPressed;
+import ir.khu.ie.publications.utils.ToastMessage;
 import ss.com.bannerslider.Slider;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnBackPressed {
 
     private Context context;
     private List<GetMainPageResponse.Data.Slider> sliders;
     private List<GetMainPageResponse.Data.Category> categoriesData;
+    private boolean doubleBackToExitPressedOnce;
     //private ArrayList<HomeCardsModel> cardsData;
 
     public HomeFragment() {
@@ -58,5 +62,18 @@ public class HomeFragment extends Fragment {
         Slider slider = view.findViewById(R.id.fragmentHomeSlider);
         HomeSliderAdapter sliderAdapter = new HomeSliderAdapter(sliders);
         slider.setAdapter(sliderAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            requireActivity().finishAndRemoveTask();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        ToastMessage.showCustomToast(context, getString(R.string.tap_again_close));
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 }
