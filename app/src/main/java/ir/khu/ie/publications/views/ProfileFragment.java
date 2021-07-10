@@ -105,7 +105,7 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
             mainPageEditProfileLayout.setVisibility(View.VISIBLE);
         } else {
             usernameText.setText(context.getResources().getString(R.string.guest_user));
-            phoneText.setText("");
+            phoneText.setText(" ");
             mainPageSingInLayout.setVisibility(View.VISIBLE);
             mainPageEditProfileLayout.setVisibility(View.INVISIBLE);
         }

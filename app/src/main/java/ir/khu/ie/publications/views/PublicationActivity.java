@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -76,8 +77,7 @@ public class PublicationActivity extends AppCompatActivity {
 
         AppCompatButton downloadButton = findViewById(R.id.publicationActivityDownloadButton);
         downloadButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(publication.getDownloadUrl()));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(publication.getDownloadUrl().trim()));
             intent.setPackage("com.android.chrome");
             try {
                 startActivity(intent);
