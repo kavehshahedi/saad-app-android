@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkClientService {
 
-    private static final String BASE_URL = BuildConfig.DEBUG ? "http://10.0.2.2:3000/api/v1/" : "";
+    private static final String BASE_URL = BuildConfig.DEBUG ? "https://saad-application.herokuapp.com/api/v1/" : "https://saad-application.herokuapp.com/api/v1/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitClient() {
