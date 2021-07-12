@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">نشریاب</string>
-    <string name="app_description">مرجع نشریات انجمن‌های دانشجویی دانشگاه‌های کشور</string>
+    <string name="app_name">ساد</string>
+    <string name="app_description">سامانه انتشارات انجمن‌های دانشجویی دانشگاه‌های کشور</string>
     <string name="profile">پروفایل</string>
     <string name="search">جست‌و‌جو</string>
     <string name="category">دسته‌بندی</string>
@@ -43,7 +43,7 @@
     <string name="get_otp_code">دریافت کد تایید</string>
     <string name="sign_in_explanation_alt">برای ورود شماره همراه خود را وارد کنید.</string>
     <string name="enter_otp_code">کد ارسال شده را وارد کنید</string>
-    <string name="favorites">نشان شده ها</string>
+    <string name="favorites">نشان‌شده‌ها</string>
     <string name="edit_profile">ویرایش پروفایل</string>
     <string name="publish_magazine">انتشار نشریه (به زودی)</string>
     <string name="log_out">خروج از حساب</string>
@@ -57,4 +57,6 @@
     <string name="updated_profile_successfully">اطلاعات شما با موفیقت ویرایش شد!</string>
     <string name="no_favorite_publications">شما نشریه‌ای را به لیست نشان‌شده‌های خود اضافه نکرده‌اید.</string>
     <string name="tap_again_close">برای خروج یک بار دیگر کلیک کنید</string>
+    <string name="log_out_message">آیا می‌خواهید از حساب کاربری خود خارج شوید؟</string>
+    <string name="logged_out_successfully">با موفقیت از حساب کاربری خود خارج شدید.</string>
 </resources>

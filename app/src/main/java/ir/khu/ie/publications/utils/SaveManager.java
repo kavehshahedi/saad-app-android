@@ -22,4 +22,8 @@ public class SaveManager {
         context.getSharedPreferences("_", MODE_PRIVATE).edit().putString("access_token", accessToken).apply();
     }
 
+    public static void clearData (Context context) {
+        context.getSharedPreferences("_", MODE_PRIVATE).edit().putString("phone", "-1").putString("access_token", "").apply();
+    }
+
 }

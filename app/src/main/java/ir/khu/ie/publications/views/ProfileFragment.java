@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -21,9 +22,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chaos.view.PinView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +38,7 @@ import ir.khu.ie.publications.services.NetworkClientService;
 import ir.khu.ie.publications.services.api.AppAPI;
 import ir.khu.ie.publications.services.api.AuthAPI;
 import ir.khu.ie.publications.services.api.ProfileAPI;
+import ir.khu.ie.publications.utils.AlertDialogCustomizer;
 import ir.khu.ie.publications.utils.LoadingDialog;
 import ir.khu.ie.publications.utils.OnBackPressed;
 import ir.khu.ie.publications.utils.SaveManager;
@@ -86,8 +88,6 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
         favoritesPage = view.findViewById(R.id.fragmentProfileEnterFavoritesLayout);
 
         setupMainPage(view);
-        setupLoginPage(view);
-        setupPinPage(view);
 
         changePage(ProfilePageType.MAIN);
     }
@@ -110,8 +110,13 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
             mainPageEditProfileLayout.setVisibility(View.INVISIBLE);
         }
 
-        view.findViewById(R.id.fragmentProfileLoginButton).setOnClickListener(v -> changePage(ProfilePageType.ENTER_NUMBER));
-        view.findViewById(R.id.fragmentProfileEditProfileButton).setOnClickListener(v -> openChangeNameSheet(view));
+        view.findViewById(R.id.fragmentProfileLoginButton).setOnClickListener(v -> {
+            changePage(ProfilePageType.ENTER_NUMBER);
+            setupLoginPage(view);
+        });
+        view.findViewById(R.id.fragmentProfileEditProfileButton).setOnClickListener(v -> {
+            openChangeNameSheet(view);
+        });
 
         view.findViewById(R.id.fragmentProfileFavoritesButton).setOnClickListener(v -> {
             LoadingDialog.showLoadingDialog(context);
@@ -140,6 +145,27 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
                             ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
                         }
                     });
+        });
+
+        view.findViewById(R.id.fragmentProfileLogOutButton).setOnClickListener(v -> {
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setTitle(R.string.app_name)
+                    .setMessage(R.string.log_out_message)
+                    .setPositiveButton("خیر", (d, i) -> {
+                    })
+                    .setNegativeButton("بله", (d, i) -> {
+                        SaveManager.clearData(context);
+                        ToastMessage.showCustomToast(context, getString(R.string.logged_out_successfully));
+
+                        Variables.accountData = new GetAccountResponse.Data("-1", context.getResources().getString(R.string.guest_user),
+                                account.getJwt(), "", new ArrayList<>());
+                        updateAccount(Variables.accountData);
+
+                        setupMainPage(view);
+                    })
+                    .setCancelable(false)
+                    .show();
+            AlertDialogCustomizer.customizeDoubleButtonTexts(context, dialog, R.color.lightGreen, R.color.lightOrange);
         });
     }
 
@@ -196,6 +222,7 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
                         if (response.body().getStatus().equals("OK")) {
                             temporaryPhone = finalPhone;
                             changePage(ProfilePageType.ENTER_PIN);
+                            setupPinPage(view);
                         } else ToastMessage.showCustomToast(context, response.body().getMessage());
                     } else
                         ToastMessage.showCustomToast(context, getString(R.string.error_occurred_try_again));
@@ -211,9 +238,11 @@ public class ProfileFragment extends Fragment implements OnBackPressed {
     }
 
     private void setupPinPage(View view) {
-        PinView pinView = view.findViewById(R.id.fragmentProfilePinView);
+        AppCompatEditText pinView = view.findViewById(R.id.fragmentProfileEnterPinEditText);
         AppCompatButton processButton = view.findViewById(R.id.fragmentProfileContinueButton);
         AppCompatImageView closeButton = view.findViewById(R.id.fragmentProfileEnterPinLayoutCancel);
+
+        pinView.setText("");
 
         closeButton.setOnClickListener(v -> closePage());
 

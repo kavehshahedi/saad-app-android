@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.adapters.PublicationCommentRecyclerAdapter;
 import ir.khu.ie.publications.adapters.PublicationInformationRecyclerAdapter;
 import ir.khu.ie.publications.models.publications.Publication;
 import ir.khu.ie.publications.models.publications.PublicationInformation;
@@ -67,7 +68,7 @@ public class PublicationActivity extends AppCompatActivity {
         rateBar.setRating(publication.getRate());
 
         AppCompatTextView publicationDownload = findViewById(R.id.publicationActivityNumberOfDownloads);
-        publicationDownload.setText(String.valueOf(publication.getDownloadCount()));
+        publicationDownload.setText(String.valueOf(getDownloadsText(publication.getDownloadCount())));
 
         ConstraintLayout editorsChoiceLayout = findViewById(R.id.publicationActivityEditorsChoiceConstraintLayout);
         editorsChoiceLayout.setVisibility(publication.isEditorsChoice() ? View.VISIBLE : View.GONE);
@@ -118,7 +119,7 @@ public class PublicationActivity extends AppCompatActivity {
                                     Variables.accountData.setFavoritePublications(fav.getData().getFavoritePublications());
                                 } else ToastMessage.showCustomToast(context, fav.getMessage());
                             } else
-                                ToastMessage.showCustomToast(context, getResources().getString(R.string.search));
+                                ToastMessage.showCustomToast(context, getResources().getString(R.string.error_occurred_try_again));
                         }
 
                         @Override
@@ -164,5 +165,25 @@ public class PublicationActivity extends AppCompatActivity {
 
         ScrollView scrollView = findViewById(R.id.publicationActivityScrollView);
         scrollView.smoothScrollTo(0, 0);
+
+        RecyclerView commentsRecyclerView = findViewById(R.id.publicationActivityCommentsRecycler);
+        commentsRecyclerView.setAdapter(new PublicationCommentRecyclerAdapter(context, publication.getComments()));
+        commentsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+    }
+
+    private String getDownloadsText(int downloads) {
+        String result = "";
+        if(downloads >= 0 && downloads < 5) result = "~5";
+        else if (downloads >= 5 && downloads <= 10) result = "~10";
+        else if (downloads > 10 && downloads <= 50) result = "+10";
+        else if (downloads > 50 && downloads <= 100) result = "+50";
+        else if (downloads > 100 && downloads <= 200) result = "+100";
+        else if (downloads > 200 && downloads <= 500) result = "+200";
+        else if (downloads > 500 && downloads <= 1000) result = "+500";
+        else if (downloads > 1000 && downloads <= 5000) result = "+1000";
+        else if (downloads > 5000 && downloads <= 10000) result = "+5000";
+        else if (downloads > 10000) result = "+10000";
+
+        return result;
     }
 }

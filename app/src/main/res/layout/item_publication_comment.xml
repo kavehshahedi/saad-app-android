@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemPublicationCommentImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.15"
-        app:layout_constraintDimensionRatio="1"
         android:layout_marginTop="16dp"
+        android:src="@drawable/ic_avatar"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.15" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/itemPublicationCommentName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/shabnam"
         android:lines="1"
+        android:text="asdasdasd"
         android:textColor="@color/darkBlue"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -28,32 +32,31 @@
         app:autoSizeMinTextSize="10sp"
         app:autoSizeStepGranularity="1sp"
         app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/itemPublicationCommentRate"
         app:layout_constraintEnd_toStartOf="@+id/itemPublicationCommentImage"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <per.wsj.library.AndRatingBar
         android:id="@+id/itemPublicationCommentRate"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
         android:isIndicator="true"
         android:rating="3"
         android:stepSize="0.1"
         app:keepOriginColor="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintBottom_toBottomOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintEnd_toStartOf="@+id/itemPublicationCommentImage"
+        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentName"
         app:layout_constraintWidth_percent="0.2"
         app:starColor="@color/lightBlue" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/itemPublicationCommentDesc"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentRate"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/shabnam"
         android:maxLines="3"
@@ -65,7 +68,10 @@
         app:autoSizeMaxTextSize="12sp"
         app:autoSizeMinTextSize="10sp"
         app:autoSizeStepGranularity="1sp"
-        app:autoSizeTextType="uniform"/>
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPublicationCommentImage" />
 
     <View
         style="@style/Divider.Horizontal"

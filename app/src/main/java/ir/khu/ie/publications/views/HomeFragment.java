@@ -1,6 +1,7 @@
 package ir.khu.ie.publications.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,15 +14,25 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import ir.khu.ie.publications.R;
 import ir.khu.ie.publications.adapters.HomeCategoryRecyclerAdapter;
 import ir.khu.ie.publications.adapters.HomeSliderAdapter;
 import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
+import ir.khu.ie.publications.models.responses.app.GetPublicationResponse;
+import ir.khu.ie.publications.services.NetworkClientService;
+import ir.khu.ie.publications.services.api.AppAPI;
+import ir.khu.ie.publications.utils.LoadingDialog;
 import ir.khu.ie.publications.utils.OnBackPressed;
 import ir.khu.ie.publications.utils.ToastMessage;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import ss.com.bannerslider.Slider;
+import ss.com.bannerslider.event.OnSlideClickListener;
 
 public class HomeFragment extends Fragment implements OnBackPressed {
 
@@ -62,6 +73,28 @@ public class HomeFragment extends Fragment implements OnBackPressed {
         Slider slider = view.findViewById(R.id.fragmentHomeSlider);
         HomeSliderAdapter sliderAdapter = new HomeSliderAdapter(sliders);
         slider.setAdapter(sliderAdapter);
+        slider.setOnSlideClickListener(position -> {
+            LoadingDialog.showLoadingDialog(context);
+            NetworkClientService.getRetrofitClient().create(AppAPI.class).getPublication(sliders.get(position).getSliderId()).enqueue(new Callback<GetPublicationResponse>() {
+                @Override
+                public void onResponse(Call<GetPublicationResponse> call, Response<GetPublicationResponse> response) {
+                    LoadingDialog.dismissLoadingDialog();
+                    if (response.body() != null) {
+                        GetPublicationResponse publication = response.body();
+                        if (publication.getStatus().equals("OK")) {
+                            context.startActivity(new Intent(context, PublicationActivity.class).putExtra("publication", new Gson().toJson(publication.getData())));
+                        } else ToastMessage.showCustomToast(context, publication.getMessage());
+                    } else
+                        ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+
+                @Override
+                public void onFailure(Call<GetPublicationResponse> call, Throwable t) {
+                    LoadingDialog.dismissLoadingDialog();
+                    ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+            });
+        });
     }
 
     @Override

@@ -32,7 +32,9 @@
                 android:id="@+id/fragmentHomeSlider"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:slider_animateIndicators="true"/>
+                app:slider_animateIndicators="true"
+                app:slider_interval="3000"
+                app:slider_loopSlides="true"/>
 
         </androidx.cardview.widget.CardView>
 

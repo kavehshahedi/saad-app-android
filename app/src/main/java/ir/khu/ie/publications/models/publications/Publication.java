@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 public class Publication {
     @SerializedName("_id")
@@ -57,10 +58,13 @@ public class Publication {
     @SerializedName("creators")
     @Expose
     private final Creators creators;
+    @SerializedName("comments")
+    @Expose
+    private final List<PublicationComment> comments;
 
-    public Publication(String id, String title, String universityId, String associationId, String number, String imageUrl, String description,
-                       String fullDescription, String downloadUrl, Date releasedDate, boolean isPremium, int viewCount, int downloadCount,
-                       float size, float rate, boolean isEditorsChoice, Creators creators) {
+    public Publication(String id, String title, String universityId, String associationId, String number, String imageUrl,
+                       String description, String fullDescription, String downloadUrl, Date releasedDate, boolean isPremium,
+                       int viewCount, int downloadCount, float size, float rate, boolean isEditorsChoice, Creators creators, List<PublicationComment> comments) {
         this.id = id;
         this.title = title;
         this.universityId = universityId;
@@ -78,6 +82,7 @@ public class Publication {
         this.rate = rate;
         this.isEditorsChoice = isEditorsChoice;
         this.creators = creators;
+        this.comments = comments;
     }
 
     public String getId() {
@@ -148,6 +153,10 @@ public class Publication {
         return creators;
     }
 
+    public List<PublicationComment> getComments() {
+        return comments;
+    }
+
     public static class Creators {
         @SerializedName("association_name")
         @Expose
@@ -191,6 +200,35 @@ public class Publication {
 
         public String getPageDesigner() {
             return pageDesigner;
+        }
+    }
+
+    public static class PublicationComment {
+        @SerializedName("name")
+        @Expose
+        private final String name;
+        @SerializedName("message")
+        @Expose
+        private final String message;
+        @SerializedName("rate")
+        private final float rate;
+
+        public PublicationComment(String name, String message, float rate) {
+            this.name = name;
+            this.message = message;
+            this.rate = rate;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public float getRate() {
+            return rate;
         }
     }
 }

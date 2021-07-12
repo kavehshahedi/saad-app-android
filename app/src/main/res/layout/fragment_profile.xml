@@ -11,7 +11,7 @@
         android:id="@+id/fragmentProfileMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -392,7 +392,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fragmentProfileEnterPinLayoutCancel"
@@ -436,8 +436,8 @@
             android:id="@+id/fragmentProfilePinCardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintDimensionRatio="1:0.275"
+            app:layout_constraintWidth_percent="0.7"
+            app:layout_constraintDimensionRatio="1:0.225"
             app:cardElevation="12dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -449,18 +449,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.chaos.view.PinView
-                    android:id="@+id/fragmentProfilePinView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintWidth_percent="0.9"
-                    app:itemRadius="6dp"
-                    app:itemSpacing="12dp"
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/fragmentProfileEnterPinEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:lineColor="@color/lightBlue" />
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/shabnam"
+                    android:hint="- - - -"
+                    android:inputType="number"
+                    android:letterSpacing="1"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="16sp"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:flow_verticalAlign="center" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
