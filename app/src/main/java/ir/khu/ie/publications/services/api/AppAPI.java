@@ -1,5 +1,6 @@
 package ir.khu.ie.publications.services.api;
 
+import ir.khu.ie.publications.models.responses.app.GetCategoryResponse;
 import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
 import ir.khu.ie.publications.models.responses.app.GetPublicationResponse;
 import ir.khu.ie.publications.models.responses.app.SearchResponse;
@@ -14,6 +15,10 @@ public interface AppAPI {
     @FormUrlEncoded
     @POST("app/get-main-page")
     Call<GetMainPageResponse> getMainPage(@Field("retrieve_data_count") int retrieveDataCount);
+
+    @FormUrlEncoded
+    @POST("app/get-category")
+    Call<GetCategoryResponse> getCategory(@Field("id") String categoryId);
 
     @FormUrlEncoded
     @POST("app/search")

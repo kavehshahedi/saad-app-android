@@ -59,4 +59,5 @@
     <string name="tap_again_close">برای خروج یک بار دیگر کلیک کنید</string>
     <string name="log_out_message">آیا می‌خواهید از حساب کاربری خود خارج شوید؟</string>
     <string name="logged_out_successfully">با موفقیت از حساب کاربری خود خارج شدید.</string>
+    <string name="no_data_for_category_err">اطلاعات بیشتری برای این دسته بندی موجود نیست.</string>
 </resources>

@@ -169,6 +169,8 @@ public class PublicationActivity extends AppCompatActivity {
         RecyclerView commentsRecyclerView = findViewById(R.id.publicationActivityCommentsRecycler);
         commentsRecyclerView.setAdapter(new PublicationCommentRecyclerAdapter(context, publication.getComments()));
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        commentsRecyclerView.setClickable(false);
+        commentsRecyclerView.setNestedScrollingEnabled(false);
     }
 
     private String getDownloadsText(int downloads) {

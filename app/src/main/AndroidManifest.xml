@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ir.khu.ie.publications">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".controllers.ApplicationController"
@@ -14,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PublicationsLibrary"
         android:usesCleartextTraffic="true"
-        tools:targetApi="m"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:targetApi="m">
+        <activity android:name=".views.CategoryActivity"></activity>
         <activity android:name=".views.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.MainActivity">
-        </activity>
-        <activity android:name=".views.PublicationActivity">
-        </activity>
+        <activity android:name=".views.MainActivity"></activity>
+        <activity android:name=".views.PublicationActivity"></activity>
     </application>
 
 </manifest>

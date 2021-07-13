@@ -9,10 +9,14 @@ import ir.khu.ie.publications.models.publications.Publication;
 import ir.khu.ie.publications.models.responses.Response;
 
 public class GetMainPageResponse extends Response {
-    private Data data;
 
-    public GetMainPageResponse(String status, String message) {
+    @SerializedName("data")
+    @Expose
+    private final Data data;
+
+    public GetMainPageResponse(String status, String message, Data data) {
         super(status, message);
+        this.data = data;
     }
 
     public Data getData() {

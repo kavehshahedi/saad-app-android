@@ -1,6 +1,8 @@
 package ir.khu.ie.publications.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,21 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import ir.khu.ie.publications.R;
+import ir.khu.ie.publications.models.responses.app.GetCategoryResponse;
 import ir.khu.ie.publications.models.responses.app.GetMainPageResponse;
+import ir.khu.ie.publications.services.NetworkClientService;
+import ir.khu.ie.publications.services.api.AppAPI;
+import ir.khu.ie.publications.utils.LoadingDialog;
+import ir.khu.ie.publications.utils.ToastMessage;
+import ir.khu.ie.publications.views.CategoryActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCategoryRecyclerAdapter.ViewHolder> {
 
@@ -40,6 +53,34 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
         holder.categoryName.setText(currentItem.getCategoryName());
         holder.publicationsRecyclerView.setAdapter(new HomeCardRecyclerAdapter(context, currentItem.getPublications()));
         holder.publicationsRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, true));
+
+        holder.moreButton.setOnClickListener(v -> {
+            LoadingDialog.showLoadingDialog(context);
+            NetworkClientService.getRetrofitClient().create(AppAPI.class).getCategory(currentItem.getCategoryId()).enqueue(new Callback<GetCategoryResponse>() {
+                @Override
+                public void onResponse(Call<GetCategoryResponse> call, Response<GetCategoryResponse> response) {
+                    LoadingDialog.dismissLoadingDialog();
+                    if (response.body() != null) {
+                        GetCategoryResponse category = response.body();
+                        if (category.getStatus().equals("OK")) {
+                            if (category.getData().getPublications().size() > 0) {
+                                context.startActivity(new Intent(context, CategoryActivity.class).putExtra("category", new Gson().toJson(category.getData())));
+                            } else
+                                ToastMessage.showCustomToast(context, context.getString(R.string.no_data_for_category_err));
+                        } else
+                            ToastMessage.showCustomToast(context, category.getMessage());
+                    } else
+                        ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+
+                @Override
+                public void onFailure(Call<GetCategoryResponse> call, Throwable t) {
+                    Log.e("Err", t.getMessage());
+                    LoadingDialog.dismissLoadingDialog();
+                    ToastMessage.showCustomToast(context, context.getResources().getString(R.string.error_occurred_try_again));
+                }
+            });
+        });
     }
 
     @Override
@@ -51,12 +92,14 @@ public class HomeCategoryRecyclerAdapter extends RecyclerView.Adapter<HomeCatego
 
         public AppCompatTextView categoryName;
         public RecyclerView publicationsRecyclerView;
+        public AppCompatTextView moreButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             categoryName = itemView.findViewById(R.id.itemHomeCategoryRecyclerCategoryText);
             publicationsRecyclerView = itemView.findViewById(R.id.itemHomeCategoryRecyclerInnerRecycler);
+            moreButton = itemView.findViewById(R.id.itemHomeCategoryRecyclerMoreText);
         }
     }
 }
