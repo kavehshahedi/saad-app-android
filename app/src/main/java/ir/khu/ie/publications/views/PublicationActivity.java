@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -175,7 +174,7 @@ public class PublicationActivity extends AppCompatActivity {
 
     private String getDownloadsText(int downloads) {
         String result = "";
-        if(downloads >= 0 && downloads < 5) result = "~5";
+        if (downloads >= 0 && downloads < 5) result = "~5";
         else if (downloads >= 5 && downloads <= 10) result = "~10";
         else if (downloads > 10 && downloads <= 50) result = "+10";
         else if (downloads > 50 && downloads <= 100) result = "+50";
